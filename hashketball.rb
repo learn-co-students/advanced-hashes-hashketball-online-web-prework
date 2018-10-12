@@ -158,8 +158,8 @@ end
     team.each do |key, value|
       if key == :team_name && value == team
         team.each do |keytwo, valtwo|
-          if key2 == :colors
-            return value2
+          if keytwo == :colors
+            return valtwo
           end
         end
       end
