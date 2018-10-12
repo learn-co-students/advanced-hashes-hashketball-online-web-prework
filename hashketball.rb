@@ -180,19 +180,13 @@ def team_names
 end
 
 def player_numbers(teams)
-  array  = []
+  array = []
   game_hash.each do |x, team|
-    team.each do |key, value|
-      if key == :players
-        value.each do |player, stat|
-          stat.each do |attribute, number|
-            if attribute == :number
-              array << number
-            end
-          end
-        end
+    team.each do |key, val|
+      if key == :team_name
+        array << val
       end
     end
   end
- array
+  array
 end
