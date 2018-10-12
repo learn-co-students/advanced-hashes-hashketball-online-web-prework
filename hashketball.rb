@@ -181,7 +181,7 @@ end
 
 def player_numbers(teams)
   array  = []
-  game_hash.each do |locale, team|
+  game_hash.each do |x, team|
     team.each do |key, value|
       if key == :players
         value.each do |player, stat|
