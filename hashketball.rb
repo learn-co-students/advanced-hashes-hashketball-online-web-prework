@@ -142,13 +142,13 @@ def shoe_size(name)
         val.each do |player, stat|
           if name == player.to_s
             stat.each do |attribute, total|
-              if attribute == :shoe
-               return total
+            if attribute == :shoe
+              return total
               end
-            end
-          end
+           end
         end
       end
     end
+   end
   end
 end
