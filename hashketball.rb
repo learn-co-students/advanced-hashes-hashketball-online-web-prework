@@ -180,7 +180,7 @@ def team_names
 end
 
 def player_numbers(team_no_namae)
-  jersey_numbers = []
+  array = []
   game_hash.each do |locale, team|
     team.each do |key, value|
       if key == :players
