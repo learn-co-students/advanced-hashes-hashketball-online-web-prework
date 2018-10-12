@@ -118,14 +118,32 @@ def game_hash()
 end
 
 def num_points_scored(name)
-    game_hash.each do |x, teams|
-    teams.each do |key, val|
+    game_hash.each do |x, team|
+    team.each do |key, val|
       if key.to_s == 'players'
         val.each do |player, stat|
           if name == player.to_s
-            stat.each do |att, total|
+            stat.each do |attribute, total|
               if attribute == :points
-               total
+                return total
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+def shoe_size(name)
+    game_hash.each do |x, team|
+    team.each do |key, val|
+      if key == :players
+        val.each do |player, stat|
+          if name == player.to_s
+            stat.each do |attribute, total|
+              if attribute == :shoe
+               return total
               end
             end
           end
