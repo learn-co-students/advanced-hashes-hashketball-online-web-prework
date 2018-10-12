@@ -202,7 +202,7 @@ def player_numbers(teams)
 end
 
 def player_stats(name)
-  return_stats = {}
+  newhash = {}
   game_hash.each do |locale, team|
     team.each do |key, value|
       if key == :players
