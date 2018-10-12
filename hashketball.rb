@@ -183,7 +183,7 @@ def player_numbers(teams)
   array = []
   game_hash.each do |x, team|
     team.each do |key, val|
-      if key == :team_name && team_no_namae == value
+      if key == :team_name && teams == val
         team.each do |key2, value2|
           if key2 == :players
             value2.each do |player, stat|
