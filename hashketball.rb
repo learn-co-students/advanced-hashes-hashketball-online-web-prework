@@ -187,7 +187,7 @@ def player_numbers(teams)
         value.each do |player, stat|
           stat.each do |attribute, number|
             if attribute == :number
-              jersey_numbers << number
+              array << number
             end
           end
         end
