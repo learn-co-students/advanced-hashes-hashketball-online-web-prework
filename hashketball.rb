@@ -186,13 +186,13 @@ def player_numbers(team_no_namae)
       if key == :players
         val.each do |player, stat|
           stat.each do |attribute, number|
-            if attribute == :number
-              array << number
-            end
+           if attribute == :number
+             array << number
           end
-        end
+         end
       end
-    end
-  end
+      end
+   end
+ end
  array
 end
