@@ -217,4 +217,28 @@ def player_stats(name)
       end
      end
     newhash
-end  
+end  .
+
+def big_shoe_rebounds
+  big = 0
+  re = 0
+  game_hash.each do |locale, team|
+    team.each do |key, value|
+      if key == :players
+        value.each do |player, stat|
+          stat.each do |attribute, total|
+            if attribute == :shoe && big< total
+              big = total
+              stat.each do |attribute2, total2|
+                if attribute2 == :rebounds
+                  re = total2
+                end
+              end 
+            end
+          end
+        end
+      end
+    end
+  end
+  return rebounds
+end
