@@ -232,13 +232,13 @@ def big_shoe_rebounds
               stat.each do |attributetwo, totaltwo|
                 if attribute2 == :rebounds
                   re = totaltwo
-                end
-            end 
-           end
+               end
+              end 
+            end
           end
-       end
+        end
       end
     end
   end
- re
+  re
 end
