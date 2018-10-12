@@ -172,7 +172,7 @@ def team_names
   game_hash.each do |x, team|
     team.each do |key, val|
       if key == :team_name
-        teams << val
+        array << val
       end
     end
   end
