@@ -203,7 +203,6 @@ end
 
 def player_stats(name)
   newhash = {}
-  
     game_hash.each do |x, team|
     team.each do |key, val|
       if key == :players
