@@ -168,7 +168,7 @@ end
 end
 
 def team_names
-  teams = []
+  array = []
   game_hash.each do |locale, team|
     team.each do |key, value|
       if key == :team_name
