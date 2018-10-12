@@ -233,12 +233,12 @@ def big_shoe_rebounds
                 if attribute2 == :rebounds
                   re = totaltwo
                 end
-              end 
-            end
+            end 
+           end
           end
-        end
+       end
       end
     end
-  end
+    end
  re
 end
