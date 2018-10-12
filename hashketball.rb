@@ -221,7 +221,7 @@ end
 
 def big_shoe_rebounds
   big = 0
-  re = 0
+  numofrebounds = 0
   game_hash.each do |locale, team|
     team.each do |key, value|
       if key == :players
