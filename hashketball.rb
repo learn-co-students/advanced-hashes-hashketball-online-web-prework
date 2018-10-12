@@ -160,9 +160,21 @@ end
         team.each do |keytwo, valtwo|
           if keytwo == :colors
             return valtwo
-          end
         end
       end
     end
+   end
+ end
+end
+
+def team_names
+  teams = []
+  game_hash.each do |locale, team|
+    team.each do |key, value|
+      if key == :team_name
+        teams << value
+      end
+    end
   end
+  return teams
 end
