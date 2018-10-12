@@ -180,19 +180,19 @@ def team_names
 end
 
 def player_numbers(teams)
-  array = []
-  game_hash.each do |x, team|
-    team.each do |key, val|
+  jersey_numbers = []
+  game_hash.each do |locale, team|
+    team.each do |key, value|
       if key == :players
-        val.each do |player, stat|
+        value.each do |player, stat|
           stat.each do |attribute, number|
-           if attribute == :number
-             array << number
+            if attribute == :number
+              jersey_numbers << number
+            end
           end
-         end
+        end
       end
-      end
-   end
- end
- array
+    end
+  end
+  return jersey_numbers
 end
