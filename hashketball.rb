@@ -185,19 +185,39 @@ def player_numbers(teams)
     team.each do |key, val|
       if key == :team_name && teams == val
           team.each do |keytwo, valtwo|
-          if keytwo == :players
-            valtwo.each do |player, stat|
-              stat.each do |attribute, total|
-                if attribute == :number
-                  array << total
+        if keytwo == :players
+          valtwo.each do |player, stat|
+            stat.each do |attribute, total|
+               if attribute == :number
+                array << total
                 end
               end
+            end
+          end
+        end
+    end
+  end
+  end
+ array
+end
+
+def player_stats(name)
+  return_stats = {}
+  game_hash.each do |locale, team|
+    team.each do |key, value|
+      if key == :players
+        value.each do |player, stat|
+          if player.to_s == name
+            stat.each do |attribute, total|
+              return_stats[attribute] = total
             end
           end
         end
       end
     end
   end
- array
-  
+  return return_stats
 end
+
+
+
