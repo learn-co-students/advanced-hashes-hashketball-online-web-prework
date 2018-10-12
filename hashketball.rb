@@ -227,7 +227,7 @@ def big_shoe_rebounds
       if key == :players
         value.each do |player, stat|
           stat.each do |attribute, total|
-            if attribute == :shoe && big< total
+            if attribute == :shoe && big < total
               big = total
               stat.each do |attributetwo, totaltwo|
                 if attribute2 == :rebounds
