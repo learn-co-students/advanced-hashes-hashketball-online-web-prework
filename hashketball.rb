@@ -179,7 +179,7 @@ def team_names
   array
 end
 
-def player_numbers(team_no_namae)
+def player_numbers(team)
   array = []
   game_hash.each do |x, team|
     team.each do |key, val|
