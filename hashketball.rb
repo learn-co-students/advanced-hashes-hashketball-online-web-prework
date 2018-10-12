@@ -214,5 +214,8 @@ def player_stats(name)
             end
           end
        end
-   array
+       end
+          end
+       end
+    newhash
   
