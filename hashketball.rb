@@ -203,21 +203,16 @@ end
 
 def player_stats(name)
   newhash = {}
-  game_hash.each do |locale, team|
-    team.each do |key, value|
+  
+    game_hash.each do |x, team|
+    team.each do |key, val|
       if key == :players
-        value.each do |player, stat|
-          if player.to_s == name
+        val.each do |player, stat|
+        if player.to_s == name
             stat.each do |attribute, total|
-              return_stats[attribute] = total
+             newhash[attribute] = total
             end
           end
-        end
-      end
-    end
-  end
-  return return_stats
-end
-
-
-
+       end
+   array
+  
