@@ -169,8 +169,8 @@ end
 
 def team_names
   array = []
-  game_hash.each do |locale, team|
-    team.each do |key, value|
+  game_hash.each do |x, team|
+    team.each do |key, val|
       if key == :team_name
         teams << value
       end
