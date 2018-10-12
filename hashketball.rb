@@ -176,5 +176,5 @@ def team_names
       end
     end
   end
-  return teams
+  teams
 end
