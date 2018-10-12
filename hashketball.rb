@@ -154,7 +154,7 @@ def shoe_size(name)
 end
 
 	def team_colors(team)
-  game_hash.each do |locale, team|
+  game_hash.each do |x, team|
     team.each do |key, val|
       if key == :team_name && val == team
         team.each do |keytwo, valtwo|
