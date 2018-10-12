@@ -229,9 +229,9 @@ def big_shoe_rebounds
           stat.each do |attribute, total|
             if attribute == :shoe && big< total
               big = total
-              stat.each do |attribute2, total2|
+              stat.each do |attribute2, totaltwo|
                 if attribute2 == :rebounds
-                  re = total2
+                  re = totaltwo
                 end
               end 
             end
