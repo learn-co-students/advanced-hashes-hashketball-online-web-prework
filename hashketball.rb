@@ -184,12 +184,12 @@ def player_numbers(teams)
   game_hash.each do |x, team|
     team.each do |key, val|
       if key == :team_name && teams == val
-        team.each do |key2, value2|
-          if key2 == :players
-            value2.each do |player, stat|
+          team.each do |keytwo, valtwo|
+          if keytwo == :players
+            valtwo.each do |player, stat|
               stat.each do |attribute, total|
                 if attribute == :number
-                  jersey_numbers << total
+                  array << total
                 end
               end
             end
