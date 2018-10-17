@@ -1,8 +1,11 @@
-# Write your code here!
+# Write your code here
 
-teams = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
-
-teams = [:home][:team_name => "Brookln Nets"][:colors => ["Black", "White"]][:players] = [
+def game_hash
+  {
+  :home_team => {
+    :name => "Brooklyn Nets",
+    :colors => ["Black", "White"],
+    :players => [
       {
       :name => "Alan Anderson",
       :number => 0,
@@ -60,8 +63,10 @@ teams = [:home][:team_name => "Brookln Nets"][:colors => ["Black", "White"]][:pl
       }
     ]
   },
-
-teams = [:away][:team_name => "Charlotte Hornets"][:colors => ["Turquoise", "purple"]][:players] = [
+  :away_team => {
+    :name => "Charlotte Hornets",
+    :colors => ["Turquoise", "Purple"],
+    :players => [
       {
       :name => "Jeff Adrien",
       :number => 4,
@@ -122,63 +127,99 @@ teams = [:away][:team_name => "Charlotte Hornets"][:colors => ["Turquoise", "pur
 }
 end
 
-def num_points_scored(name)
-  
-  
-  game_hash.each do |location, team_data|
-    team_data.each do |attribute, data|
-      if attribute == players_name
-      data.each do |data_item|
-        if data_item == :points
-          return data_item
-        
+def num_points_scored (name)
+  answer = nil
+
+  game_hash.each do |team, details_hash|
+    players_array = details_hash[:players]
+      players_array.each do |player_details_hash|
+        if player_details_hash[:name] == name
+          answer = player_details_hash[:points]
+        end
+      end
   end
-  
-  
+  answer
+end
+
+
 def shoe_size(name)
-  game_hash.each do |location, team_data|
-    team_data.each do |attribute, data|
-      if attribute == players_name
-      data.each do |shoe|
-        if data_item == :shoe
-          return data_item
-   end    
-   
-  def team_stats 
-  home_team = game_hash.values_at(:home)
-  away_team = game_hash.values_at(:away)
-  total_team_stats = home_team + away_team
-  total_team_stats
-end 
-team_stats 
+  answer = nil
 
-def team_colors(team_name)
-  find_team = team_stats.find {|team| team.fetch(:team_name) == team_name}
-  find_team.fetch(:colors)
-end 
+  game_hash.each do |team, details_hash|
+    players_array = details_hash[:players]
+      players_array.each do |player_details_hash|
+        if player_details_hash[:name] == name
+          answer = player_details_hash[:shoe]
+        end
+      end
+  end
+  answer
+end
 
 
-def team_names 
-  team_stats.collect do |team|
-    team[:team_name]
-  end 
-end 
+def team_colors (team_name)
+    colors = nil
+    game_hash.each do |team, team_details_hash|
+        if team_details_hash[:name] == team_name
+            colors = team_details_hash[:colors].flatten
+        end
+    end
+    colors
+end
 
 
-def player_numbers(team_name)
-  find_numbers = team_stats.find {|team| team.fetch(:team_name) == team_name}
-  find_numbers[:players].collect do |player| 
-    player[:number]
-  end 
-end 
+def team_names
+  game_hash.collect do |team, team_details_hash|
+    team_details_hash[:name] 
+  end
+end
 
 
+def player_numbers (team_name)
+  player_numbers_list = []
+  game_hash.each do |team, team_details_hash|
+    if team_details_hash[:name] == team_name
+      team_details_hash[:players].each do |player|
+        player.each do |key, value|
+          if key == :number 
+            player_numbers_list << value
+          end
+        end
+      end
+    end
+  end
+  player_numbers_list
+end
 
 
 def player_stats(player_name)
- stats= players.find {|player| player.fetch(:player_name) == player_name}
-  stats.delete_if {|info, string| info == :player_name}
+  player_stats = {}
+  game_hash.each do |team, team_details_hash|
+    team_details_hash[:players].each do |stats|
+
+      if stats[:name] == player_name
+        stats.delete(:name)
+        player_stats = stats
+      end
+    end
+  end
+  player_stats
 end
+
+def big_shoe_rebounds
+  big_shoes_guy = 0
+  rebounds = 0
+    game_hash.each do | team, team_details_hash|
+      team_details_hash[:players].each do | stats |
+        if stats[:shoe] > big_shoes_guy
+          big_shoes_guy = stats[:shoe]
+          rebounds = stats[:rebounds]
+        end
+      end
+    end
+  rebounds
+end
+
 
 
   
