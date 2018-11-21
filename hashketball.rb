@@ -1,3 +1,5 @@
+require 'pry'
+
 def game_hash
 {
   :home => {
@@ -147,4 +149,46 @@ def team_colors(team_name)
     end
   end
   colors
+end
+
+def team_names
+  array = []
+  game_hash.each do |team, team_hash|
+    array << team_hash[:team_name]
+  end
+  array
+end
+
+def player_numbers(teamName)
+  playerNumbers = []
+  game_hash.each do |team, team_hash|
+    if team_hash[:team_name] == teamName
+      team_hash[:players].each {|player,player_hash| playerNumbers << player_hash[:number]}
+    end
+  end
+  playerNumbers
+end
+
+def player_stats(playerName)
+  game_hash.each do |team, team_hash|
+    team_hash[:players].each do |player,player_hash|
+      if player == playerName
+        return player_hash
+      end
+    end
+  end
+end
+
+def big_shoe_rebounds
+playerShoe = 0
+rebounds = 0
+  game_hash.each do |team, team_hash|
+    team_hash[:players].each do |player, player_stats|
+      if player_stats[:shoe]>playerShoe
+        playerShoe = player_stats[:shoe]
+        rebounds = player_stats[:rebounds]
+      end
+    end
+  end
+  rebounds
 end
