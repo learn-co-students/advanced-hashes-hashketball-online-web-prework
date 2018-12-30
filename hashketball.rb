@@ -50,7 +50,7 @@ hash = {
                                   :blocks=>8,
                                   :slam_dunks=>5 }
                                 }
-                              }
+                              },
  :away => {
    :team_name => "Charlotte Hornets",
    :colors => ["Turquoise", "Purple"],
@@ -103,6 +103,4 @@ hash = {
 }
  }
 }
-end
-end
 end
