@@ -2,7 +2,7 @@ require 'pry'# Write your code here!
 def game_hash
 hash = {
   :home => {
-    :team_name => "Brooklyn Nets ",
+    :team_name =>"Brooklyn Nets",
     :colors => [ "Black", "White"],
     :players => {          "Alan Anderson"  =>
        {
@@ -129,18 +129,54 @@ def shoe_size(player)
       end
 end
 
-
-
 def team_colors(team)
-  game_hash.each do | team, team_data|
-if team_data[:team_name] == team
+  game_hash.each do |team1, team_data|
+
+if team_data[:team_name] ==team
 return team_data[:colors]
 end
   end
 end
 
-def team_names (team)
-game_hash.each do | team, team_data|
-  team_data.map  do |team_name|
+def team_names
+  array= []
+game_hash.each do |team,team_data|
+array<< team_data[:team_name]
+end
+return array
+end
+def player_numbers(team_name)
+  array=[]
+  game_hash.each do |location, team_data|
+    if team_data[:team_name]  ==  team_name
+  team_data[:players].each do |players,name|
+array<< name[:number]
+  end
+      end
+end
+return array
+end
+ def player_stats(player)
+   game_hash.each do |location, team_data|
+   #binding.pry
 
+   team_data[:players].each do |players, name|
+   if players == player
+    return name
+ end
+end
+end
+end
+def big_shoe_rebounds
+  game_hash.each do |location, team_data|
+  #binding.pry
+  team_data[:players].each do |players, name|
+
+if name[:shoe]   == 19
+
+return name[:rebounds]
+
+end
+end
+end
 end
