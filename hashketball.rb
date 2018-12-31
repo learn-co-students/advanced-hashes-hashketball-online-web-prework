@@ -105,13 +105,42 @@ hash = {
 }
 end
 def num_points_scored (player)
-  game_hash.each do |location, team_data|
+    game_hash.each do |location, team_data|
+#binding.pry
 
-    team_data.each do |attribute, name|
+    team_data[:players].each do |players, name|
+    if players == player
+return name[:points]
+#points =  name[:points]
 
-      name[:points].collect  do |data_item|
-
-         end
-        end
+      end
       end
     end
+end
+def shoe_size(player)
+  game_hash.each do |location, team_data|
+  #binding.pry
+
+  team_data[:players].each do |players, name|
+  if players == player
+  return name[:shoe]
+      end
+      end
+      end
+end
+
+
+
+def team_colors(team)
+  game_hash.each do | team, team_data|
+if team_data[:team_name] == team
+return team_data[:colors]
+end
+  end
+end
+
+def team_names (team)
+game_hash.each do | team, team_data|
+  team_data.map  do |team_name|
+
+end
