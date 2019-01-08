@@ -1,5 +1,3 @@
-# when defining keys as strings, you need to use =>
-
 def game_hash
   game_hash = {
     home: {
