@@ -120,9 +120,10 @@ end
 #puts game_hash[:away][:players]["Brendan Haywood"][:shoe]
 
 def num_points_scored(game_hash)
-  game_hash.each do |location, team_info|
-    puts "test"
-    binding.pry
+  binding.pry
+  game.each do |location, team_info|
+
+
 
   end
 end
