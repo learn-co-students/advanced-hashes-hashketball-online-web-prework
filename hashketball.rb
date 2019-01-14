@@ -116,5 +116,5 @@ game = {
   }
 
 }
-
 end
+#puts game_hash[:away][:players]["Brendan Haywood"][:shoe]
