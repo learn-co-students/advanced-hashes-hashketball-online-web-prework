@@ -26,7 +26,7 @@ game = {
         blocks: 12,
         slam_dunks: 7
       },
-      "Brook Lopex" => {
+      "Brook Lopez" => {
         number: "11",
         shoe: "17",
         points: 17,
@@ -72,7 +72,7 @@ game = {
         blocks: 7,
         slam_dunks: 2
       },
-      "Bismark Biyombo" => {
+      "Bismak Biyombo" => {
         number: "0",
         shoe: "16",
         points: 12,
@@ -125,9 +125,17 @@ end
 
 def num_points_scored(player)
   game_hash.each do |location, team_info|
-    team_info.each do |players, name|
-binding.pry
+    team_info.each do |attribute, data|
 
+      if attribute == :players
+
+        data.each do |name, stats|
+          if name == player
+            return stats[:points]
+
+          end
+        end
+      end
     end
   end
 end
