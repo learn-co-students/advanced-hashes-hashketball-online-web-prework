@@ -170,13 +170,11 @@ end
 
 
 def team_names
+  team_arr = []
   game_hash.each do |location, team_info|
 
-      name = team_info[:team_name]
-      return name.split(" ")
+      team_arr << team_info[:team_name]
 
-
-
-    #end
   end
+  return team_arr
 end
