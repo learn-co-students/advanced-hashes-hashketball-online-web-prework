@@ -117,13 +117,17 @@ game = {
 
 }
 end
-#puts game_hash[:away][:players]["Brendan Haywood"][:shoe]
 
-def num_points_scored(game_hash)
-  binding.pry
-  game.each do |location, team_info|
+#game_hash[:away][:players].each do |name, info|
+#if name == player
+#  info.each do |number|
+#    number
 
+def num_points_scored(player)
+  game_hash.each do |location, team_info|
+    team_info.each do |players, name|
+binding.pry
 
-
+    end
   end
 end
