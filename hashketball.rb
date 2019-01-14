@@ -1,4 +1,5 @@
 require 'pry'
+
 def game_hash
 game = {
   :home => {
@@ -54,9 +55,11 @@ game = {
         steals: 4,
         blocks: 11,
         slam_dunks: 1
-      },
-
+      }
+    }
   }
+
+
 }
 
 end
