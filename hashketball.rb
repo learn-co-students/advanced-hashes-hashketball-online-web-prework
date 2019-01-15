@@ -179,6 +179,26 @@ def team_names
   return team_arr
 end
 
-def player_numbers
 
+def player_numbers(team_name)
+  team_arr = []
+  game_hash.each do |location, team_info|
+    team_info.each do |attribute, data|
+      team_arr << stats[:number]
+        data.each do |name, stats|
+
+
+
+binding.pry
+
+
+
+      end
+
+    end
+  if team_name == data
+
+end
+  end
+  return team_arr
 end
