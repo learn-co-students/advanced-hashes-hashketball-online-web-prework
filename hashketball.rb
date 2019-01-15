@@ -183,28 +183,25 @@ end
 
 
 def player_numbers(team_name)
-#team_arr = {}
-  game_hash.map do |location, team_info|
+new_arr = []
+  game_hash.each do |location, team_info|
 
-    team_info.map do |attribute, data|
+    team_info.each do |attribute, data|
 
 
-        #return data[:players]
-        if attribute == :players
+        if attribute == :team_name && data == team_name
+          team_info[:players].each do |name, stats|
 
-        data.each do |name, stats|
-#stuck here
-binding.pry
-          if data == team_name
 
-            return stats[:number]
+             new_arr << stats[:number]
 
-            end
-        end
+          end
         end
     end
-  #  team_arr
-  end
+end
+new_arr
+
+
 end
 
 
