@@ -225,7 +225,9 @@ end
 
 
 def big_shoe_rebounds
-  shoe_arr = []
+
+  shoe_size = 0
+  rebounds = 0
   game_hash.map do |location, team_info|
     team_info.map do |attribute, data|
 
@@ -233,17 +235,14 @@ def big_shoe_rebounds
 
         data.map do |name, stats|
 
-          shoe_arr << stats[:shoe]
-          shoe_arr.max
+        if stats[:shoe] > shoe_size
+          shoe_size = stats[:shoe]
+          rebounds = stats[:rebounds]
 
-          #how do I find that persons rebound
-        #  big shoe = shoe_arr.max
-
-
+        end
         end
       end
     end
   end
-
-
+  rebounds
 end
