@@ -137,51 +137,53 @@ def shoe_size (playerName)
 end
 
 def team_colors (teamName)
-  team_colors = []
-  game_hash.each do |team, team_hash|
+  game_hash.each do |team,team_hash|
     if team_hash[:team_name] == teamName
-      team_hash[:colors].collect do |color|
-      team_colors << color
-      end
+      return team_hash[:colors]
     end
   end
-  team_colors
 end
 
 def team_names
-  game_hash.collect do |team, team_hash|
-    team_hash[:team_name]
+  teams = []
+  game_hash.each do |team,team_hash|
+    teams << team_hash[:team_name]
   end
+  teams
 end
 
 def player_numbers(teamName)
   playerNumbers = []
-  game_hash.each do |team, team_hash|
-    if team_hash[:team_name] == teamName
-      team_hash[:players].each {|player,player_hash| playerNumbers << player_hash[:number]}
+  game_hash.each do |team,team_hash|
+    if teamName == team_hash[:team_name]
+      team_hash[:players].each do |player,stats|
+        playerNumbers << stats[:number]
+      end
     end
   end
   playerNumbers
 end
 
 def player_stats(playerName)
-  game_hash.each do |team, team_hash|
-    team_hash[:players].each do |player,player_hash|
-      if player == playerName
-        return player_hash
+  playerStats = {}
+  game_hash.each do |team,team_hash|
+    team_hash[:players].each do |player,stats|
+      if playerName == player
+        playerStats = stats
       end
     end
   end
+  playerStats
 end
 
 def big_shoe_rebounds
-playerShoe = 0
-rebounds = 0
+  playerShoe = 0
+  rebounds = 0
   game_hash.each do |team, team_hash|
-    team_hash[:players].each do |player, player_stats|
-      if player_stats[:shoe]>playerShoe
-        playerShoe = player_stats[:shoe]
-        rebounds = player_stats[:rebounds]
+    team_hash[:players].each do |player, stats|
+      if stats[:shoe] > playerShoe
+        playerShoe = stats[:shoe]
+        rebounds = stats[:rebounds]
       end
     end
   end
