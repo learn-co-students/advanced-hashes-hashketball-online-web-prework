@@ -180,25 +180,53 @@ def team_names
 end
 
 
+
+
 def player_numbers(team_name)
-  team_arr = []
+#team_arr = {}
+  game_hash.map do |location, team_info|
+
+    team_info.map do |attribute, data|
+
+
+        #return data[:players]
+        if attribute == :players
+
+        data.each do |name, stats|
+#stuck here
+          if data == team_name
+            return stats[:number]
+
+            end
+        end
+        end
+    end
+  #  team_arr
+  end
+end
+
+
+
+def player_stats(player)
   game_hash.each do |location, team_info|
     team_info.each do |attribute, data|
-      team_arr << stats[:number]
+
+      if attribute == :players
+
         data.each do |name, stats|
+          if name == player
+            return stats
 
-
-
-binding.pry
-
-
-
+          end
+        end
       end
-
     end
-  if team_name == data
-
-end
   end
-  return team_arr
+end
+
+
+def big_shoe_rebounds
+
+
+
 end
