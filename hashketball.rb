@@ -237,6 +237,8 @@ def big_shoe_rebounds
           shoe_arr << stats[:shoe]
           shoe_arr.max
 
+          #how do I find that persons rebound
+        #  big shoe = shoe_arr.max
 
 
         end
