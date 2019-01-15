@@ -194,7 +194,9 @@ def player_numbers(team_name)
 
         data.each do |name, stats|
 #stuck here
+binding.pry
           if data == team_name
+
             return stats[:number]
 
             end
