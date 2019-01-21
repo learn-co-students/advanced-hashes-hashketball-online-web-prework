@@ -127,15 +127,11 @@ def big_shoe_rebounds
         atr_val.each do |key, value|
           if value[:shoe] > biggest_shoe
             biggest_shoe = value[:shoe]
+            shoe_score = value[:rebounds]
           end
-        end
-        if atr_val[:shoe] = biggest_shoe
-          shoe_score = atr_val[:rebounds]
-          binding.pry
         end
       end
     end
   end
-  binding.pry
-shoe_score
+  shoe_score
 end
