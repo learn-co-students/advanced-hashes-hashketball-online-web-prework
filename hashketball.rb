@@ -50,8 +50,8 @@ end
 
 def shoe_size(player)
   shoe_size = 0
-  game_hash.each_value do |team_stats|
-    team_stats.each do |attribute, atr_val|
+  game_hash.each_value do |team_val|
+    team_val.each do |attribute, atr_val|
       if attribute == :players
         if atr_val.keys.include? (player)
           atr_val.each do |key, value|
@@ -69,8 +69,8 @@ end
 
 def team_colors(team_input)
   team_colors = []
-  game_hash.each do |team, team_val|
-    if game_hash[team][:team_name] == team_input
+  game_hash.each_value do |team_val|
+    if team_val[:team_name] == team_input
       team_colors = team_val[:colors]
     end
   end
@@ -86,5 +86,56 @@ def team_names
 end
 
 def player_numbers(team_input)
-binding.pry
+  player_numbers = []
+  game_hash.each_value do |team_val|
+    if team_val[:team_name] == team_input
+      team_val.each do |key, value|
+        if key == :players
+          value.each do |player, player_num|
+              player_numbers << player_num[:number]
+          end
+        end
+      end
+    end
+  end
+  player_numbers
+end
+
+def player_stats(player_input)
+  player_stats = {}
+  game_hash.each_value do |team_val|
+    team_val.each do |key, team_stats|
+      if key == :players
+        team_stats.each do |name, stats|
+          if name == player_input
+            player_stats = stats.sort.to_h
+          end
+        end
+      end
+    end
+  end
+  player_stats
+end
+
+
+def big_shoe_rebounds
+  biggest_shoe = 0
+  shoe_score = 0
+  game_hash.each_value do |team_val|
+    team_val.each do |attribute, atr_val|
+      if attribute == :players
+        atr_val.each do |key, value|
+          if value[:shoe] > biggest_shoe
+            biggest_shoe = value[:shoe]
+          end
+        end
+        if atr_val[:shoe] = biggest_shoe
+          shoe_score = atr_val[:rebounds]
+          binding.pry
+        end
+      end
+    end
+  end
+  binding.pry
+shoe_score
 end
