@@ -1,4 +1,6 @@
 # Write your code here!
+require "pry"
+
 def game_hash
    { home:
     { team_name: "Brooklyn Nets",
@@ -184,11 +186,11 @@ def big_shoe_rebounds
     v[:players].each do |player, stats|
       if size == nil || stats[:shoe] > size
         size = stats[:shoe]
-        rebounds = stats[:rebounds]
+        rebounds = stats.fetch(:rebounds)
       end
     end
   end
   rebounds
 end
 
-big_shoe_rebounds
+num_points_scored("Jason Terry")
