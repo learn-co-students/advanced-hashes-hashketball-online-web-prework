@@ -193,4 +193,50 @@ def big_shoe_rebounds
   rebounds
 end
 
-num_points_scored("Jason Terry")
+def most_points_scored
+  points = 0
+  best_player = nil
+  game_hash.each do |k, v|
+    v[:players].each do |player, stats|
+      if (stats[:points] > points)
+        best_player = player
+        points = stats[:points]
+      end
+    end
+  end
+  best_player
+end
+
+def winning_team
+  home_points = 0
+  away_points = 0
+  winners = nil
+  game_hash[:home][:players].each {|player, stats| home_points += stats[:points]}
+  game_hash[:away][:players].each {|player, stats| away_points += stats[:points]}
+  if home_points > away_points
+    winners = game_hash[:home][:team_name]
+  else
+    wineers = game_hash[:away][:team_name]
+  end
+  winners
+end
+
+def player_with_longest_name
+  name_size = 0
+  longest_name = nil
+  game_hash.each do |k, v|
+    v[:players].each do |name, stats|
+      if name.length > name_size
+        longest_name = name
+        name_size = name.length
+      end
+    end
+  end
+  longest_name
+end
+
+def long_name_steals_a_ton
+  
+end
+
+puts long_name_steals_a_ton()
