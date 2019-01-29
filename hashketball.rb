@@ -118,18 +118,22 @@ def game_hash
   }
 end
 
-def num_points_scored(players_name)
+def num_points_scored(player_name)
   game_hash.each do |location, team_info|
-    if team_info[:players].has_key?(players_name)
-      return team_info[:players][players_name][:points]
+    team_info[:players].each do |name, stats|
+      if name == player_name 
+        return stats[:points]
+      end
     end
   end
 end
 
-def shoe_size(players_name)
+def shoe_size(player_name)
   game_hash.each do |location, team_info|
-    if team_info[:players].has_key?(players_name)
-      return team_info[:players][players_name][:shoe]
+    team_info[:players].each do |name, stats|
+      if name == player_name
+        return stats[:shoe]
+      end
     end
   end
 end
@@ -161,41 +165,51 @@ def player_numbers(team_name)
   end
   jersey_array
 end
-
+  
 def player_stats(player_name)
   game_hash.each do |location, team_info|
-    if team_info[:players].has_key?(player_name)
-      return team_info[:players][player_name]
+    team_info[:players].each do |name, stats|
+      if name == player_name 
+        return stats
+      end
     end
   end
 end
 
 def big_shoe_rebounds
-  biggest = 0
-  rebounds = 0 
+  largest_shoe = []
   game_hash.each do |location, team_info|
     team_info[:players].each do |name, stats|
-      if stats[:shoe] > biggest
-        biggest = stats[:shoe]
-        rebounds = stats[:rebounds]
+      if largest_shoe.length == 0 || stats[:shoe] > largest_shoe[0]
+        largest_shoe[0] = stats[:shoe]
       end
     end
   end
-  rebounds
+  game_hash.each do |location, team_info|
+    team_info[:players].each do |name, stats|
+      if stats[:shoe] == largest_shoe[0]
+        return stats[:rebounds]
+      end
+    end
+  end
 end
 
 def most_points_scored
-  most_points = 0 
-  mvp_array = []
+  most_points = []
   game_hash.each do |location, team_info|
     team_info[:players].each do |name, stats|
-      if stats[:points] > most_points 
-        most_points = stats[:points]
-        mvp_array = [name]
+      if most_points.length == 0 || stats[:points] > most_points[0]
+        most_points[0] = stats[:points]
       end
     end
   end
-  mvp_array[0]
+  game_hash.each do |location, team_info|
+    team_info[:players].each do |name, stats|
+      if stats[:points] == most_points[0]
+        return name 
+      end
+    end
+  end
 end
 
 def winning_team
@@ -209,7 +223,45 @@ def winning_team
   end
   if home_points > away_points
     return game_hash[:home][:team_name]
-  elsif away_points > home_points
+  elsif away_points > home_points 
     return game_hash[:away][:team_name]
   end
 end
+
+def player_with_longest_name
+  long_name = []
+  game_hash.each do |location, team_info|
+    team_info[:players].each do |name, stats|
+      if long_name.length == 0 || name.size > long_name[0].size 
+        long_name[0] = name
+      end
+    end
+  end
+  long_name[0]
+end
+
+def long_name_steals_a_ton?
+  longest_name = player_with_longest_name
+  longest_name_steals = 0 
+  game_hash.each do |location, team_info|
+    team_info[:players].each do |name, stats|
+      if longest_name == name 
+        longest_name_steals += stats[:steals]
+      end
+    end
+  end
+  game_hash.each do |location, team_info|
+    team_info[:players].each do |name, stats|
+      if longest_name_steals < stats[:steals]
+        return FALSE 
+      end
+    end
+  end
+  return TRUE
+end
+
+
+  
+  
+  
+  

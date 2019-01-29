@@ -265,7 +265,7 @@ end
      end
 
    end
-=begin
+
    describe '#player_with_longest_name' do
 
      it 'returns Brendan Haywood' do
@@ -284,6 +284,6 @@ end
        expect(long_name_steals_a_ton?).to eq(true)
      end
 
-   end
-=end
+
+ end
  end
