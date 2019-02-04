@@ -120,9 +120,21 @@ game_hash = {
       }
     }
    }
-    
 }
 end
+
+def num_points_scored(player)
+game_hash[home_team_name][player]
+binding.pry
+end
+#def home_team_name
+#  game_hash[:home][:team_name]
+#end
+ 
+#puts home_team_name
+# => "Brooklyn Nets"
+#end
+
 #{:team_name => "", :colors => , :players => }, 
 
 #{:home => {:team_name => "", :colors => , :players => }, :away => {}}
