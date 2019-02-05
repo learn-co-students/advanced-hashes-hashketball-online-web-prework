@@ -150,10 +150,32 @@ def team_colors(team)
 end
 
 def team_names
-game_hash[:home][:team_name]
-game_hash[:away][:team_name]
-binding.pry
+
+  teams = []
+  teams << game_hash[:home][:team_name]
+  teams << game_hash[:away][:team_name]
 end
+
+def player_numbers(team)
+ nums = []
+binding.pry
+ if game_hash[:home][:team_name].include?(team)
+    game_hash[:home][:players].each do |name,attributes|
+      name[:number]
+    end
+    elsif game_hash[:away][:team_name].include?(team)
+      game_hash[:away][:players].each do |name,attributes|
+      name[:number]
+     end 
+  #elsif game_hash[:away][:team_name].include?(team)
+  #  game_hash[:away][:players].each do |player,numbers|
+  #    name[:number]
+    #end
+    #expected: [0, 1, 11, 30, 31]
+  end
+end 
+
+
 
 #def home_team_name
 #  game_hash[:home][:team_name]
@@ -163,3 +185,6 @@ end
 # => "Brooklyn Nets"
 #end
 
+game_hash[:home][:team_name][:players][player][:number]
+
+#"Alan Anderson"
