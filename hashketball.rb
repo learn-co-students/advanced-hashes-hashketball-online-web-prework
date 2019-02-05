@@ -63,7 +63,7 @@ game_hash = {
    },
   :away => {
     :team_name => "Charlotte Hornets",
-    :colors => ["Turquiose","Purple"],
+    :colors => ["Turquoise","Purple"],
     :players => {
       "Jeff Adrien" => {
         :number => 4,
@@ -124,9 +124,34 @@ game_hash = {
 end
 
 def num_points_scored(player)
-game_hash[home_team_name][player]
-binding.pry
+  if game_hash[:home][:players].include?(player)
+    game_hash[:home][:players][player][:points]
+  elsif game_hash[:away][:players].include?(player)
+    game_hash[:away][:players][player][:points]
+    # puts player
+  end  
 end
+
+def shoe_size(player)
+  if game_hash[:home][:players].include?(player)
+   game_hash[:home][:players][player][:shoe]
+  elsif game_hash[:away][:players].include?(player)
+      game_hash[:away][:players][player][:shoe]
+    # puts player
+  end
+end
+
+def team_colors(team)
+  if game_hash[:home][:team_name].include?(team)
+    game_hash[:home][:colors]
+  elsif game_hash[:away][:team_name].include?(team)
+    game_hash[:away][:colors]
+  end
+#binding.pry
+end
+
+
+
 #def home_team_name
 #  game_hash[:home][:team_name]
 #end
@@ -135,47 +160,3 @@ end
 # => "Brooklyn Nets"
 #end
 
-#{:team_name => "", :colors => , :players => }, 
-
-#{:home => {:team_name => "", :colors => , :players => }, :away => {}}
-#{, , ] }
-
-#{:home => {} ,:away => {}}
-#end
-# =end 
-=begin
-{:home => 
-# {
- #   :team_name => "",
-  #  :colors => {},
-   # :players => {}
-# }
-{}}
-      
-#binding.pry
-{:away => 
-#  {
- #   :team_name => "",
-  #  :colors => {},
-   # :players => {}
-    #  }
-{}}
-=end
-
-
-
-  #   :summer => {
-  #     :fourth_of_july => ["Fireworks", "BBQ"]
-  #   },
-  #   :fall => {
-  #     :thanksgiving => ["Turkey"]
-  #   },
-
-#game_hash = {:home => {} ,:away => {}}
-#game_hash = {:home => {{:team_name => "", :colors => {}, :players => {}}}, :away => {:team_name => "", :colors => {}, :players => {}}}
-#{:team_name => "", :colors => {}, :players => {}}
-#stuff = {:team_name => "", :colors => {}, :players => {}} 
-#game_hash.each do |team,info|
-#info.store(stuff)
-#{:team_name => "", :colors => {}, :players => {}}   
-#end
