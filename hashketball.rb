@@ -1,7 +1,7 @@
 # Write your code here!
 require 'pry'
 def game_hash
-game_hash = {
+ game_hash = {
   :home => {
     :team_name => "Brooklyn Nets",
     :colors => ["Black","White"],
@@ -74,7 +74,7 @@ game_hash = {
         :steals =>  2,
         :blocks =>  7,
         :slam_dunks => 2      
-        },
+      },
       "Bismak Biyombo" => {
         :number => 0,
         :shoe =>  16,
@@ -120,7 +120,7 @@ game_hash = {
       }
     }
    }
-}
+ }
 end
 
 def num_points_scored(player)
@@ -128,7 +128,6 @@ def num_points_scored(player)
     game_hash[:home][:players][player][:points]
   elsif game_hash[:away][:players].include?(player)
     game_hash[:away][:players][player][:points]
-    # puts player
   end  
 end
 
@@ -150,7 +149,6 @@ def team_colors(team)
 end
 
 def team_names
-
   teams = []
   teams << game_hash[:home][:team_name]
   teams << game_hash[:away][:team_name]
@@ -158,33 +156,42 @@ end
 
 def player_numbers(team)
  nums = []
-binding.pry
  if game_hash[:home][:team_name].include?(team)
-    game_hash[:home][:players].each do |name,attributes|
-      name[:number]
+    game_hash[:home][:players].map do |name, attributes|
+    attributes[:number]
     end
-    elsif game_hash[:away][:team_name].include?(team)
-      game_hash[:away][:players].each do |name,attributes|
-      name[:number]
-     end 
-  #elsif game_hash[:away][:team_name].include?(team)
-  #  game_hash[:away][:players].each do |player,numbers|
-  #    name[:number]
-    #end
+ elsif game_hash[:away][:team_name].include?(team)
+    game_hash[:away][:players].map do |name,attributes|
+    attributes[:number]
+    end 
     #expected: [0, 1, 11, 30, 31]
-  end
+ end
 end 
 
+def player_stats(player)
+binding.pry
+ if game_hash[:home][:players].include?(player)
+    game_hash[:home][:players][player]  
+#       game_hash[:home][:players].map do |name, attributes|
+    name
+  end
+ elsif game_hash[:away][:players].include?(player)
+    game_hash[:away][:players][player]  
+ 
+ #game_hash[:away][:team_name].include?(player)
+  #  game_hash[:away][:players]
+ #end
 
+end
 
 #def home_team_name
-#  game_hash[:home][:team_name]
+#  game_hash[:home][:team_name][players][player]
 #end
  
 #puts home_team_name
 # => "Brooklyn Nets"
 #end
 
-game_hash[:home][:team_name][:players][player][:number]
+# game_hash[:home][:team_name][:players][player][:number]
 
 #"Alan Anderson"
