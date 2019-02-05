@@ -169,29 +169,56 @@ def player_numbers(team)
 end 
 
 def player_stats(player)
-binding.pry
  if game_hash[:home][:players].include?(player)
     game_hash[:home][:players][player]  
-#       game_hash[:home][:players].map do |name, attributes|
-    name
-  end
  elsif game_hash[:away][:players].include?(player)
-    game_hash[:away][:players][player]  
- 
- #game_hash[:away][:team_name].include?(player)
-  #  game_hash[:away][:players]
- #end
-
+       game_hash[:away][:players][player]  
+ #game_hash[:away][:players]["Jeff Adrien"]
+  end
 end
 
-#def home_team_name
-#  game_hash[:home][:team_name][players][player]
-#end
- 
-#puts home_team_name
-# => "Brooklyn Nets"
+def big_shoe_rebounds
+  home_shoes = []
+  away_shoes = []
+  game_hash[:home][:players].map do |home_name, home_stats|
+  home_stats[:shoe]
+  #home_shoes << 
+binding.pry
+home_shoes
+  end
+
+  game_hash[:away][:players].map do |away_name, away_stats|
+  away_stats[:shoe]
+#away_shoes
+
+  end
+#big_shoe_rebounds
+#.sort.last(n)
+  #select
+#  if player[:shoe] 
+end
+
+#game_hash[:home][:players].map do |name, attributes|
+#    name => attributes
+#[:number]
 #end
 
-# game_hash[:home][:team_name][:players][player][:number]
 
-#"Alan Anderson"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
