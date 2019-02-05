@@ -157,7 +157,7 @@ end
 def player_numbers(team)
  nums = []
  if game_hash[:home][:team_name].include?(team)
-    game_hash[:home][:players].map do |name, attributes|
+    game_hash[:home][:players].map do |name,attributes|
     attributes[:number]
     end
  elsif game_hash[:away][:team_name].include?(team)
@@ -178,38 +178,20 @@ def player_stats(player)
 end
 
 def big_shoe_rebounds
-  home_shoes = []
-  away_shoes = []
-  game_hash[:home][:players].map do |home_name, home_stats|
-  home_stats[:shoe]
-  #home_shoes << 
-binding.pry
-home_shoes
+ largest_shoe = 0
+ rebounds = 0
+ game_hash.each do |location, team_data|
+  team_data[:players].each do |player, player_data| 
+    if team_data[:players][player][:shoe] > largest_shoe
+    #binding.pry
+      largest_shoe = team_data[:players][player][:shoe] 
+      rebounds = team_data[:players][player][:rebounds]
+#player_data[:rebounds]
+    end
   end
-
-  game_hash[:away][:players].map do |away_name, away_stats|
-  away_stats[:shoe]
-#away_shoes
-
-  end
-#big_shoe_rebounds
-#.sort.last(n)
-  #select
-#  if player[:shoe] 
+ end
+rebounds
 end
-
-#game_hash[:home][:players].map do |name, attributes|
-#    name => attributes
-#[:number]
-#end
-
-
-
-
-
-
-
-
 
 
 
