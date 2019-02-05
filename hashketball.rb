@@ -147,10 +147,13 @@ def team_colors(team)
   elsif game_hash[:away][:team_name].include?(team)
     game_hash[:away][:colors]
   end
-#binding.pry
 end
 
-
+def team_names
+game_hash[:home][:team_name]
+game_hash[:away][:team_name]
+binding.pry
+end
 
 #def home_team_name
 #  game_hash[:home][:team_name]
