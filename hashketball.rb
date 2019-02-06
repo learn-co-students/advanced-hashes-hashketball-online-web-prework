@@ -79,17 +79,73 @@ def num_points_scored(name)
   game_hash.each do |location, team_data|
 
     team_data.each do |attribute, data|
-#binding.pry      
-       data[players].each do |data_item, stats|
+      
+      if attribute == :players
+      
+        data.each do |data_item, stats|
          
-
-
-       end
-
+          if data_item == name
+           
+#binding.pry           
+        
+          return stats[:points] 
+           
+          end
+        end
+      end 
     end
-  
   end
-  
+end 
+
+
+
+def shoe_size(name)
+
+  game_hash.each do |location, team_data|
+
+    team_data.each do |attribute, data|
+      
+      if attribute == :players
+      
+        data.each do |data_item, stats|
+         
+          if data_item == name
+           
+#binding.pry           
+        
+          return stats[:shoe] 
+           
+          end
+        end
+      end 
+    end
+  end
+end 
+
+
+def team_colors(team_name)
+
+  game_hash.each do |location, team_data|
+
+    team_data.each do |attribute, data|
+      
+      if attribute == :colors 
+        
+        return attribute[:colors] 
+binding.pry       
+#        data.each do |data_item, stats|
+         
+#          if data_item == name
+           
+#binding.pry           
+        
+#          return stats[:shoe] 
+           
+#          end
+#        end
+      end 
+    end
+  end
 end 
   
 
