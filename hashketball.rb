@@ -114,13 +114,13 @@ end
   
 
 def num_points_scored(player_name)
-    points = 0
     game_hash.each do |location, team_data|
     team_data.each do |attributes, data|
       if data.is_a?(Hash)
-        data.each do |player, stats|
+        data.select do |player, stats|
           if player == player_name
-            puts stats[:points]
+            stats[:points]
+            binding.pry
           end
         end
       end
