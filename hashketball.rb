@@ -124,23 +124,57 @@ end
 
 ## ALTERNATIVE SOLUTION - NOT TESTING CORRECTLY
 
-  def num_points_scored(player_name)
+def num_points_scored(player_name)
+    points = 0
     game_hash.each do |location, team_data|
     team_data.each do |attributes, data|
       if data.is_a?(Hash) && data.keys.include?(player_name)
         data[player_name].each do |stats, value|
           if stats == :points 
-            puts  value
+            points = value
             
           end
         end
       end
     end
     end
-  end
+    points
+end
 
 
 ##  def shoe_size(player_name)
 ##    if game_hash[:home][:players].keys.include?(player_name)
 ##      game_hash[:home]
 
+def shoe_size(player_name)
+  shoe_sizes = 0 
+  game_hash.each do |location, team_data|
+    team_data.each do |attributes, data|
+      if data.is_a?(Hash) && data.keys.include?(player_name)
+        data[player_name].each do |stats, value|
+          if stats == :shoe
+            shoe_sizes = value
+          end
+        end
+      end
+    end
+  end
+  shoe_sizes
+end
+
+def team_colors(team_name)
+  colors = []
+  game_hash.each do |location, team_data|
+    team_data.each do |attributes, data|
+      if team_data.values.include?(team_name) && data.is_a?(Array)  
+        data.each do |value|
+          colors << value
+        end
+      end
+    end
+  end
+  colors
+end
+
+
+        
