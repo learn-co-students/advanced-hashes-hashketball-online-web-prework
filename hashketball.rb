@@ -1,14 +1,5 @@
 require 'pry'
 
-def num_points_scored(player_name
-  game_hash.each do |location, team_data|
-    team_data.each do |attributes, data|
-      if data.is_a?(HashW
-        data.each do |player, stats|
-          binding.pryrite your code here!
-require 'pry'
-
-
 def game_hash
   
   game_hash = {  
@@ -120,38 +111,24 @@ def game_hash
   
 end
             
-
   
 
-def good_practices
-  game_hash.each do |location, team_data|
-    #are you ABSOLUTELY SURE what 'location' and 'team data' are? use binding.pry to find out!
-    
-      team_data.each do |attribute, data|
-        #are you ABSOLUTELY SURE what 'attribute' and 'team data' are? use binding.pry to find out!
-      
-        if data.is_a?(Hash)
-        #what is 'data' at each loop through out .each block? when will the following line of code work and when will it break?
-          data.each do |data_item|
-            binding.pry
-            data_item.each do |stats, value|
-            binding.pry
-            end
-         end 
-         end
+def num_points_scored(player_name)
+    points = 0
+    game_hash.each do |location, team_data|
+    team_data.each do |attributes, data|
+      if data.is_a?(Hash)
+        data.each do |player, stats|
+          if player == player_name
+            puts stats[:points]
+          end
+        end
+      end
     end
   end
 end
 
-good_practices
 
-
-def num_points_scored(player_name)
-  game_hash.each do |location, team_data|
-    team_data.each do |attributes, data|
-      if data.is_a?(Hash)
-        data.each do |player, stats|
-          binding.pry
 
 
 
