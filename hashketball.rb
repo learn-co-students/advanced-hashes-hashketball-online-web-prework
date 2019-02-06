@@ -181,11 +181,25 @@ def team_names
   game_hash.each do |location, team_data|
     team_data.each do |stats, data|
       if stats == :team_name
-        team_names << data
-        binding.pry
+        team_name_ary << data
       end
     end
   end
   team_name_ary
 end
         
+
+def player_numbers(team_name)
+  game_hash.each do |location, team_data|
+    team_data.each do |stats, data|
+      if data == team_name 
+        data[:players]
+      binding.pry
+    end
+  end
+end
+
+  
+  
+  
+
