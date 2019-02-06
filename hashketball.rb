@@ -113,34 +113,34 @@ end
             
   
 
-def num_points_scored(player_name)
-    if game_hash[:home][:players].keys.include?(player_name)
-      game_hash[:home][:players][player_name][:points]
-    elsif game_hash[:away][:players].keys.include?(player_name)
-      game_hash[:away][:players][player_name][:points]
-    else
-    end
-end
-
-## ALTERNATIVE SOLUTION - NOT TESTING CORRECTLY
-
 ##  def num_points_scored(player_name)
-##    game_hash.each do |location, team_data|
-##    team_data.each do |attributes, data|
-##      if data.is_a?(Hash) && data.keys.include?(player_name)
-##        data[player_name].each do |stats, value|
-##          if stats == :points 
-##              value
-##            binding.pry
-##          end
-##        end
-##      end
-##    end
+##    if game_hash[:home][:players].keys.include?(player_name)
+##        game_hash[:home][:players][player_name][:points]
+##    elsif game_hash[:away][:players].keys.include?(player_name)
+##        game_hash[:away][:players][player_name][:points]
+##     else
 ##    end
 ##  end
 
+## ALTERNATIVE SOLUTION - NOT TESTING CORRECTLY
 
-def shoe_size(player_name)
-  if game_hash[:home][:players].keys.include?(player_name)
-    game_hash[:home]
+  def num_points_scored(player_name)
+    game_hash.each do |location, team_data|
+    team_data.each do |attributes, data|
+      if data.is_a?(Hash) && data.keys.include?(player_name)
+        data[player_name].each do |stats, value|
+          if stats == :points 
+            puts  value
+            
+          end
+        end
+      end
+    end
+    end
+  end
+
+
+##  def shoe_size(player_name)
+##    if game_hash[:home][:players].keys.include?(player_name)
+##      game_hash[:home]
 
