@@ -182,6 +182,7 @@ def team_names
     team_data.each do |stats, data|
       if stats == :team_name
         team_names << data
+        binding.pry
       end
     end
   end
