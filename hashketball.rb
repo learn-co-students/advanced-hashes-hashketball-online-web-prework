@@ -10,7 +10,7 @@ def game_hash
           :number => 0, :shoe => 16, :points => 22, :rebounds => 12, :assists => 12, :steals => 3, :blocks => 1, :slam_dunks => 1
           },
           "Reggie Evans" => {
-            :number => 30, :shoe => 14, :points => 12, :rebounds => 12, :assists => 12. :steals => 12, :blocks => 12, :slam_dunks => 7
+            :number => 30, :shoe => 14, :points => 12, :rebounds => 12, :assists => 12, :steals => 12, :blocks => 12, :slam_dunks => 7
           },
           "Brook Lopez" => {
             :number => 11, :shoe => 17, :points => 17, :rebounds => 19, :assists => 10, :steals => 3, :blocks => 1, :slam_dunks => 15
@@ -22,7 +22,7 @@ def game_hash
             :number => 31, :shoe => 15, :points => 19, :rebounds => 2, :assists => 2, :steals => 4, :blocks => 11, :slam_dunks => 11
           }
       }
-    }
+    },
     :away => {
       :team_name => "Charlotte Hornets",
       :colors => ["Turquoise", "Purple"],
@@ -42,7 +42,6 @@ def game_hash
         "Brendan Haywood" => {
           :number => 33, :shoe => 15, :points => 6, :rebounds => 12, :assists => 12, :steals => 22, :blocks => 5, :slam_dunks => 12
         }
-        
       }
     }
   }
