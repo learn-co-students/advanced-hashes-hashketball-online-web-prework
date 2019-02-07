@@ -209,7 +209,48 @@ end
 
   
 def player_stats(player_name)
+  player_stat_hash = {}
+  game_hash.each do |location, team_data|
+    team_data.each do |attributes, data|
+      if data.is_a?(Hash)
+        data.each do |player, stats|
+          if player == player_name
+            player_stat_hash = stats
+          end
+        end
+      end
+    end
+  end
+  player_stat_hash
+end
 
+  
+
+def big_shoe_rebounds
+  shoe_size = 0
+  largest_shoe_rebounds = 0
+  game_hash.each do |location, team_data|
+    team_data.each do |attributes, data|
+      if data.is_a?(Hash)
+        data.each do |player, stats|
+          stats.each do |stat, value|
+            if stat == :shoe && value > shoe_size
+              shoe_size = value
+            end
+            if stat == :rebounds
+              largest_shoe_rebounds = value 
+            
+            end
+          end
+        end
+      end
+    end
+  end
+  largest_shoe_rebounds
+end
+    
+  
+  
   
   
 
