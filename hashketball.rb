@@ -129,10 +129,17 @@ def team_colors(team_name)
 
     team_data.each do |attribute, data|
       
-      if attribute == :colors 
+      if attribute == team_name   
+binding.pry         
+        return attribute[:team_name][:colors] 
         
-        return attribute[:colors] 
-binding.pry       
+      end 
+    end
+  end
+end  
+        
+        
+      
 #        data.each do |data_item, stats|
          
 #          if data_item == name
@@ -143,10 +150,7 @@ binding.pry
            
 #          end
 #        end
-      end 
-    end
-  end
-end 
+   
   
 
 
