@@ -75,21 +75,12 @@ end
 
 
 def num_points_scored(name)
-
   game_hash.each do |location, team_data|
-
     team_data.each do |attribute, data|
-      
       if attribute == :players
-      
         data.each do |data_item, stats|
-         
           if data_item == name
-           
-#binding.pry           
-        
-          return stats[:points] 
-           
+            return stats[:points] 
           end
         end
       end 
@@ -100,21 +91,12 @@ end
 
 
 def shoe_size(name)
-
   game_hash.each do |location, team_data|
-
     team_data.each do |attribute, data|
-      
       if attribute == :players
-      
         data.each do |data_item, stats|
-         
           if data_item == name
-           
-#binding.pry           
-        
-          return stats[:shoe] 
-           
+            return stats[:shoe] 
           end
         end
       end 
@@ -126,16 +108,20 @@ end
 def team_colors(team_name)
 
   game_hash.each do |location, team_data|
-    
-    if team_data == team_name
-    
-      team_data.each do |attribute, data|
+#binding.pry
+#   if team_data == team_name                This line was so wrong, because the conditional is asking if the team name passed in, which will be a string, is equal to the whole                                               team_data hash.
+
+    if team_data[:team_name] == team_name  # This is correct. First grabbing the value of team_data[:team_name], which is a string, and then asking if it is equal to team_name                                            passed in, which is also a string. This line is the correct reasoning for the conditional.
       
-        if attribute == :colors 
-#binding.pry         
-          return attribute[:colors] 
-        end 
-      end 
+      return team_data[:colors]
+      
+#       team_data.each do |attribute, data|  These lines are not necessary because we don't need to iterate this deep to access the value of :colors. The first level iteration                                                gives us access to the information we need and we used binding pry on line 111 to to plug in - team-data and :team_name and :colors to                                            see what was returned - verifying that we don't need to iterate further down into game_hash.
+      
+#        if attribute == :colors 
+        
+   #       return attribute[:colors] 
+   #     end 
+  #    end 
     end
   end
 end  
