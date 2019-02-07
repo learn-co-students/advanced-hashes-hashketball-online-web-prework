@@ -1,4 +1,6 @@
-def game_hash {
+require 'pry'
+
+def game_hash
   :home => {
     team_name: "Brooklyn Nets",
     colors: ["Black", "White"],
@@ -111,4 +113,20 @@ def game_hash {
       }
     }
   }
+
 end
+
+# Hierarchy:
+#game_hash |location,team_data|
+#  home/away
+#   team_name (string)
+#   colors (array)
+#   players (hash) |name,stats|
+#       number: "33",
+#       shoe: "15",
+#       points: "6",
+#       rebounds: "12",
+#       assists: "12",
+#       steals: "22",
+#       blocks: "5",
+#       slam_dunks: "12"
