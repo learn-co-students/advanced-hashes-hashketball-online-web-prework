@@ -1,7 +1,8 @@
 require 'pry'
 
 def game_hash
-  :home => {
+  {
+    home: {
     team_name: "Brooklyn Nets",
     colors: ["Black", "White"],
     players: {
@@ -55,9 +56,9 @@ def game_hash
         blocks: "11",
         slam_dunks: "1"
       }
-    }
-  },
-  :away = {
+      }
+    },
+    away: {
     team_name: "Charlotte Hornets",
     colors: ["Turquoise", "Purple"],
     players: {
@@ -111,22 +112,24 @@ def game_hash
         blocks: "5",
         slam_dunks: "12"
       }
+      }
     }
   }
-
 end
 
-# Hierarchy:
-#game_hash |location,team_data|
-#  home/away
-#   team_name (string)
-#   colors (array)
-#   players (hash) |name,stats|
-#       number: "33",
-#       shoe: "15",
-#       points: "6",
-#       rebounds: "12",
-#       assists: "12",
-#       steals: "22",
-#       blocks: "5",
-#       slam_dunks: "12"
+def num_points_scored(player_name)
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+      if attribute == :players
+        data.each do |player, stats|
+          if player == player_name
+            points = stats[:points]
+          end
+        end
+      end
+    end
+  end
+end
+
+# points = data[player_name][:points]
+# for some reason this doesn't iterate through the second location (away)
