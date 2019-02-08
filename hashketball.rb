@@ -205,12 +205,11 @@ def big_shoe_rebounds
   game_hash.each do |location, team_data|
     team_data.each do |attribute, data|
       if attribute == :players
+        shoe_sizes = []
         data.each do |player, stats|
-          # iterate through each pair and find the biggest stats[:shoe]
-          # maybe sort the hash by the biggest stats[:shoe] then pick first?
-          binding.pry
-          stats[:shoe]
+          shoe_sizes << stats[:shoe]
         end
+        shoe_sizes.sort
       end
     end
   end
