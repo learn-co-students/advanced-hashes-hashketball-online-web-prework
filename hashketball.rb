@@ -165,6 +165,39 @@ def player_stats(player_name)
     end 
   end
 end 
+
+
+def big_shoe_rebounds
+  
+  highest_key = nil 
+  
+  highest_value = nil 
+  
+  game_hash.each do |location, team_data|
+    
+    team_data.each do |attribute, data|
+      
+      if attribute == :players 
+      
+        data.each do |data_item, stats|
+          
+          stats.each do |stat_key, stat_value|
+            
+            if highest_value == nil || stat_value > highest_value
+              
+              highest_value = stat_value
+              
+              highest_key = stat_key
+            
+            end
+          end 
+        end
+        highest_key
+  #binding.pry 
+      end 
+    end 
+  end 
+end 
      
     
      
