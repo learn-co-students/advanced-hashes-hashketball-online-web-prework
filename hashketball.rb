@@ -169,9 +169,9 @@ end
 
 def big_shoe_rebounds
   
-  highest_key = nil 
+  highest_shoe_key = nil 
   
-  highest_value = nil 
+  highest_shoe_value = nil 
   
   game_hash.each do |location, team_data|
     
@@ -180,27 +180,39 @@ def big_shoe_rebounds
       if attribute == :players 
       
         data.each do |data_item, stats|
-#  binding.pry 
+#binding.pry 
   
-#          stats.each do |stat_key, stat_value|
+          stats.each do |stat_key, stat_value|
             
-            if stat_key[:shoe] == nil || stat_value > highest_value 
-          
-            if highest_value == nil || stat_value > highest_value
+            if highest_shoe_value == nil || stats[:shoe] > highest_shoe_value
               
-              highest_value = stat_value
+              highest_shoe_value = stats[:shoe]
               
-              highest_key = stat_key
-            
+              highest_shoe_key = data_item 
+               
+ 
             end
-          end 
+            
+          end
+
         end
-        
-  #binding.pry 
+        return highest_shoe_key[:rebounds]
+       # binding.pry
       end 
+     
     end 
   end 
 end 
+
+
+
+#if stat_key[:shoe] == nil || stat_value > highest_value 
+          
+#            if highest_value == nil || stat_value > highest_value
+              
+#              highest_value = stat_value
+              
+#              highest_key = stat_key
      
     
      
