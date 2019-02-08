@@ -19,7 +19,7 @@ def game_hash
             :number => 1, :shoe => 19, :points => 26, :rebounds => 12, :assists => 6, :steals => 3, :blocks => 8, :slam_dunks => 5
           },
           "Jason Terry" => {
-            :number => 31, :shoe => 15, :points => 19, :rebounds => 2, :assists => 2, :steals => 4, :blocks => 11, :slam_dunks => 11
+            :number => 31, :shoe => 15, :points => 19, :rebounds => 2, :assists => 2, :steals => 4, :blocks => 11, :slam_dunks => 1
           }
       }
     },
@@ -149,6 +149,32 @@ def player_numbers(team_name)
       end 
     end
   team_numbers_file
+end
+
+
+def player_stats(player_name) 
+  
+  game_hash.each do |location, team_data|
+    
+    team_data.each do |attribute, data|
+      
+      if attribute == :players 
+      
+        data.each do |data_item, stats|
+          
+          if data_item == player_name
+            
+            return stats 
+#  binding.pry            
+        
+          end
+          
+#  binding.pry
+  
+        end
+      end 
+    end 
+  end
 end 
      
     
