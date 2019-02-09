@@ -77,7 +77,7 @@ end
 def num_points_scored(name)
   game_hash.each do |location, team_data|
     team_data.each do |attribute, data|
-      if attribute == :players
+      if attribute == :players               # This line directs the iteration to skip attributes :team_name and :team_colors, the value of which is a string and an array, which                                          makes things more complicated to deal with those key values. In this case, for this method, we don't need to deal with or iterate                                           over that data, so we can just skip past and deal directly with the attribute :players which is where the party is for this method.
         data.each do |data_item, stats|
           if data_item == name
             return stats[:points] 
@@ -93,7 +93,7 @@ end
 def shoe_size(name)
   game_hash.each do |location, team_data|
     team_data.each do |attribute, data|
-      if attribute == :players
+      if attribute == :players               # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
         data.each do |data_item, stats|
           if data_item == name
             return stats[:shoe] 
@@ -140,7 +140,7 @@ def player_numbers(team_name)
     game_hash.each do |location, team_data|
       if team_data[:team_name] == team_name
         team_data.each do |attribute, data|
-          if attribute == :players 
+          if attribute == :players            # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
             data.each do |data_item, stats|
               team_numbers_file << stats[:number]
             end 
@@ -155,7 +155,7 @@ end
 def player_stats(player_name) 
   game_hash.each do |location, team_data|
     team_data.each do |attribute, data|
-      if attribute == :players 
+      if attribute == :players               # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
         data.each do |data_item, stats|
           if data_item == player_name
             return stats 
@@ -168,54 +168,71 @@ end
 
 
 def big_shoe_rebounds
-  
-  highest_shoe_key = nil 
-  
-  highest_shoe_value = nil
-  
-  number_of_rebounds = nil 
-  
+  highest_shoe_key = 0 
+  highest_shoe_value = 0
+  players_number_of_rebounds = 0 
   game_hash.each do |location, team_data|
-    
     team_data.each do |attribute, data|
-      
-      if attribute == :players 
-      
+      if attribute == :players                # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
         data.each do |data_item, stats|
-
-          stats.each do |stat_key, stat_value|
-            
-           
-#binding.pry             
-            if highest_shoe_value == nil || stats[:shoe] > highest_shoe_value
-              
+          if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
               highest_shoe_value = stats[:shoe]
-              
               highest_shoe_key = data_item
-              
-              number_of_rebounds = stats[:rebounds] 
-              
-              
-#binding.pry             
-            end
+              players_number_of_rebounds = stats[:rebounds] 
           end
         end
       end 
     end 
   end
-  return number_of_rebounds 
+  return players_number_of_rebounds 
+end
+
+
+
+#def big_shoe_rebounds
+  
+#  highest_shoe_key = 0 
+#  highest_shoe_value = 0
+#  players_number_of_rebounds = 0 
+  
+#  game_hash.each do |location, team_data|
+#    team_data.each do |attribute, data|
+#      if attribute == :players                # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
+#        data.each do |data_item, stats|
+
+#          stats.each do |stat_key, stat_value|   Don't need to iterate down to this level, all the necessary data is in the :players hash represented by data.
+            
+#binding.pry                                  # Very important take away: My initial approach to finding the player with the highest shoe size by    comparing players shoe sizes, by defining placeholder values to zero and resetting those values so   they are not zero and then re_assigning them when encountering a value that is higher, was Good!     - reaching back to the previous problem solving in my key_for_min lab. Also note that the placeholder values are defined on lines 172-174 so they are accessible outside of the .each iterations scope.   Also and very important: The placeholder values are re_assigned (finalized) on lines 185-187 after  all :players and their corresponding stats hash have been iterated through - after the final iteration, leaving us with the final players and that players data - the referrences - stats[:shoe], data_item, and stats[:rebounds] are all referrencing the data of the player of that iteration and are accessible as such. To return the player with the highest shoe size number of rebounds, is not about using some varient of bracket notation in the return statement (return highest_shoe_key[:rebounds] which is incorrect) to access that data (like I spent so much time fixated on) but... assigning the players stats[:rebounds] to a placeholder(variable) on line 187 (understanding that stats[:rebounds] bracket notaion is relevant to or corresponds to the last player of the final iteration) and just returning that placeholder(variable).
+
+#            if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
+#              highest_shoe_value = stats[:shoe]
+#              highest_shoe_key = data_item
+#              players_number_of_rebounds = stats[:rebounds] 
+              
+#binding.pry             
+#            end
+#          end 
+#        end
+#      end 
+#    end 
+#  end
+#  return players_number_of_rebounds 
 #binding.pry
-end 
+#end 
 
 
 
-#if stat_key[:shoe] == nil || stat_value > highest_value 
-          
-#            if highest_value == nil || stat_value > highest_value
-              
-#              highest_value = stat_value
-              
-#              highest_key = stat_key
+#def key_for_min_value(name_hash)
+# lowest_key = nil
+# lowest_value = nil
+#   name_hash.each do |k, v|
+#     if lowest_value == nil || v < lowest_value
+#       lowest_value = v
+#       lowest_key = k
+#     end
+#   end
+# lowest_key
+#end
      
     
  
