@@ -288,10 +288,10 @@ def big_shoe_rebounds
       players_number_of_rebounds = stats[:rebounds]
     end
   end
-  return players_number_of_rebounds          
-end 
-
-
+  return players_number_of_rebounds                   
+end   
+                     # This method is re-factored but not correct because it is only iterating through the home team player stats -                                                                    see line 284 game_hash[:home]. Just by chance that the player with the highest shoe size is in the home team                                                                    players hash and thats why it passes the spec.rb tests. So I'm commenting out this refactored method and                                                                        returing to my original long (code smelly) method and moving on.      
+ 
 
 def most_points_scored
   
@@ -307,31 +307,25 @@ def most_points_scored
  
       highest_points_key = player_name
       
+ 
+ binding.pry       
+#          end  
+#        end   
+    end 
+  end
+  return highest_points_key 
+end  
+    
+# As per discussion with AAQ Coach, research .fetch if I want to take on the bonus questions. This lab is a monster and not well placed in the curriculum. I have exercised all do diligence with the code I have written and trying to understand all the concepts at my level of understanding. I'm in good shape to move on.  
+  
 #        game_hash[:away][:players].each do |player_name, stats| 
           
 #          if highest_points_value == 0 || stats[:points] > highest_points_value
 
 #            highest_points_value = stats[:points]
  
-#            highest_points_key = player_name  
- binding.pry       
-#          end  
-        end   
-    end 
-  end
-   
-end  
-    
-# .fetch 
-  
-        
-#  game_hash[:away][:players].each do |player_name, stats| 
-#          
-#          if highest_points_value == 0 || stats[:points] > highest_points_value
-#
-#            highest_points_value = stats[:points]
- 
-#            highest_points_key = player_name      
+#            highest_points_key = player_name        
+     
       
 
    
