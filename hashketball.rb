@@ -77,7 +77,7 @@ end
 def num_points_scored(name)
   game_hash.each do |location, team_data|
     team_data.each do |attribute, data|
-      if attribute == :players               # This line directs the iteration to skip attributes :team_name and :team_colors, the value of which is a string and an array, which                                          makes things more complicated to deal with those key values. In this case, for this method, we don't need to deal with or iterate                                           over that data, so we can just skip past and deal directly with the attribute :players which is where the party is for this method.
+      if attribute == :players               # This line directs the iteration to skip attributes :team_name and :team_colors, the value of which is a string and an array, which                                          makes things more complicated to deal with those key values. In this case, for this method, we don't need to deal with or iterate                                           over that data, so we can just skip past and deal directly with the attribute :players which is where the party (relevant data) is                                          for this method.
         data.each do |data_item, stats|
           if data_item == name
             return stats[:points] 
@@ -106,25 +106,34 @@ end
 
 
 def team_colors(team_name)
-
   game_hash.each do |location, team_data|
+    if team_data[:team_name] == team_name  
+      return team_data[:colors]
+    end
+  end
+end                                          # See explanation notes of this passing method directly below.       
 
-#   if team_data == team_name                This line was so wrong, because the conditional is asking if the team name passed in, which will be a string, is equal to the whole                                               team_data hash.
 
-    if team_data[:team_name] == team_name  # This is correct. First grabbing the value of team_data[:team_name], which is a string, and then asking if it is equal to team_name                                            passed in, which is also a string. This line is the correct reasoning for the conditional.
+#def team_colors(team_name)
+
+#  game_hash.each do |location, team_data|
+
+#   if team_data == team_name                 This line was so wrong, because the conditional is asking if the team name passed in, which will be a string, is equal to the whole                                               team_data hash.
+
+#    if team_data[:team_name] == team_name  # This is correct. First grabbing the value of team_data[:team_name], which is a string, and then asking if it is equal to team_name                                                passed in, which is also a string. This line is the correct reasoning for the conditional.
 #binding.pry
 
-      return team_data[:colors]
+#      return team_data[:colors]
       
 #       
 
-#       team_data.each do |attribute, data|  These lines are not necessary because we don't need to iterate this deep to access the value of :colors. The first level iteration             if attribute == :colors            gives us access to the information we need and we used binding pry on line 111 to to plug in - team-data and :team_name and :colors to                                            see what was returned - verifying that we don't need to iterate further down into game_hash.
+#       team_data.each do |attribute, data|   These lines are not necessary because we don't need to iterate this deep to access the value of :colors. The first level iteration             if attribute == :colors            gives us access to the information we need and we used binding pry on line 111 to to plug in - team-data and :team_name and :colors to                                             see what was returned - verifying that we don't need to iterate further down into game_hash.
 #             return attribute[:colors] 
 #         end 
 #       end 
-    end
-  end
-end
+#    end
+#  end
+#end 
 
 
 def team_names
@@ -167,25 +176,25 @@ def player_stats(player_name)
 end 
 
 
-def big_shoe_rebounds
-  highest_shoe_key = 0 
-  highest_shoe_value = 0
-  players_number_of_rebounds = 0 
-  game_hash.each do |location, team_data|
-    team_data.each do |attribute, data|
-      if attribute == :players                # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
-        data.each do |data_item, stats|
-          if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
-              highest_shoe_value = stats[:shoe]
-              highest_shoe_key = data_item
-              players_number_of_rebounds = stats[:rebounds] 
-          end
-        end
-      end 
-    end 
-  end
-  return players_number_of_rebounds 
-end
+#def big_shoe_rebounds
+#  highest_shoe_key = 0 
+#  highest_shoe_value = 0
+#  players_number_of_rebounds = 0 
+#  game_hash.each do |location, team_data|
+#    team_data.each do |attribute, data|
+#      if attribute == :players                # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
+#        data.each do |data_item, stats|
+#          if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
+#              highest_shoe_value = stats[:shoe]
+#              highest_shoe_key = data_item
+#              players_number_of_rebounds = stats[:rebounds] 
+#          end
+#        end
+#      end 
+#    end 
+#  end
+#  return players_number_of_rebounds           # See explanation notes of this passing method directly below. 
+#end
 
 
 
@@ -202,7 +211,7 @@ end
 
 #          stats.each do |stat_key, stat_value|   Don't need to iterate down to this level, all the necessary data is in the :players hash represented by data.
             
-#binding.pry                                  # Very important take away: My initial approach to finding the player with the highest shoe size by    comparing players shoe sizes, by defining placeholder values to zero and resetting those values so   they are not zero and then re_assigning them when encountering a value that is higher, was Good!     - reaching back to the previous problem solving in my key_for_min lab. Also note that the placeholder values are defined on lines 172-174 so they are accessible outside of the .each iterations scope.   Also and very important: The placeholder values are re_assigned (finalized) on lines 185-187 after  all :players and their corresponding stats hash have been iterated through - after the final iteration, leaving us with the final players and that players data - the referrences - stats[:shoe], data_item, and stats[:rebounds] are all referrencing the data of the player of that iteration and are accessible as such. To return the player with the highest shoe size number of rebounds, is not about using some varient of bracket notation in the return statement (return highest_shoe_key[:rebounds] which is incorrect) to access that data (like I spent so much time fixated on) but... assigning the players stats[:rebounds] to a placeholder(variable) on line 187 (understanding that stats[:rebounds] bracket notaion is relevant to or corresponds to the last player of the final iteration) and just returning that placeholder(variable).
+#binding.pry                                  # Very important take away: My initial approach to finding the player with the highest shoe size by comparing players shoe sizes, by defining placeholder values to zero and resetting those values when they are not zero when using them to compare shoe size values of each player and then re_assigning them when encountering a value that is higher, was Good! - reaching back to the previous problem solving in my key_for_min lab (see lines 225-235 below. Also note that the placeholder values are defined on lines 194-196 so they are accessible outside of the .each iterations scope.The placeholder values defined on lines 194-196 will be reset/re-asigned inside the iteration scope, but accessible from outside that scope because the are define outside that scop. So thay are accessible from within the scope and outside of it as well. Also and very important: The placeholder values are re_assigned (finalized) on lines 208-210 after all :players and their corresponding stats hash have been iterated through - after the final iteration, leaving me with the final players and that players data. The referrences - stats[:shoe], data_item, and stats[:rebounds] are all referrencing the data of the player of that iteration and are accessible as such. To return the player with the highest shoe size number of rebounds, is not about using some varient of bracket notation in the return statement (return highest_shoe_key[:rebounds] which is incorrect) to access that data (like I spent so much time fixated on) but... assigning the players stats[:rebounds] to a placeholder(variable) on line 210 (understanding that the stats[:rebounds] bracket notaion is correct and relevant to or corresponds to the last player of the final iteration) and just returning that placeholder(variable). This very long explanation may not be a very well articulated psuedo code, but hopefully serve to explain all my progressive reasoning in problem solving this method for future referrnce.
 
 #            if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
 #              highest_shoe_value = stats[:shoe]
@@ -234,9 +243,53 @@ end
 # lowest_key
 #end
      
+     
+     
+def big_shoe_rebounds
+  highest_shoe_key = 0 
+  highest_shoe_value = 0
+  players_number_of_rebounds = 0
+  
+  game_hash[:home][:players].each do |player_name, stats|                   # Change k and v variables.
+  
+#  game_hash.each do |location, team_data|                                  # Don't need this. This done in line 253.
+#   team_data.each do |attribute, data|                                     # Don't need this. This done in line 253.
+
+#     if attribute == :players                                              # Don't need this. This done in line 253.
+        
+#        data.each do |data_item, stats|                                    # Don't need this. This done in line 253.
+          if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
+              highest_shoe_value = stats[:shoe]
+              highest_shoe_key = player_name                                # Change what was data-item to player_name to correspond to change made to k and v variable on line 253.
+
+              players_number_of_rebounds = stats[:rebounds]
+ 
+          end
+#        end                                                                # Don't need this. This done in line 253.
+        
+#      end                                                                  # Don't need this. This done in line 253.
+       
+#    end                                                                    # Don't need this. This done in line 253.
+  end
+#  binding.pry
+  return players_number_of_rebounds          
+end
+
     
  
-    
+def big_shoe_rebounds
+  highest_shoe_key = 0 
+  highest_shoe_value = 0
+  players_number_of_rebounds = 0
+  game_hash[:home][:players].each do |player_name, stats|                   
+    if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
+      highest_shoe_value = stats[:shoe]
+      highest_shoe_key = player_name                                
+      players_number_of_rebounds = stats[:rebounds]
+    end
+  end
+  return players_number_of_rebounds          
+end    
     
   
   
