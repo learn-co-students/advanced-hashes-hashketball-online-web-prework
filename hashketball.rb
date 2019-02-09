@@ -245,12 +245,12 @@ end
      
      
      
-def big_shoe_rebounds
-  highest_shoe_key = 0 
-  highest_shoe_value = 0
-  players_number_of_rebounds = 0
+#def big_shoe_rebounds
+#  highest_shoe_key = 0 
+#  highest_shoe_value = 0
+#  players_number_of_rebounds = 0
   
-  game_hash[:home][:players].each do |player_name, stats|                   # Change k and v variables.
+#  game_hash[:home][:players].each do |player_name, stats|                   # Change k and v variables.
   
 #  game_hash.each do |location, team_data|                                  # Don't need this. This done in line 253.
 #   team_data.each do |attribute, data|                                     # Don't need this. This done in line 253.
@@ -258,22 +258,22 @@ def big_shoe_rebounds
 #     if attribute == :players                                              # Don't need this. This done in line 253.
         
 #        data.each do |data_item, stats|                                    # Don't need this. This done in line 253.
-          if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
-              highest_shoe_value = stats[:shoe]
-              highest_shoe_key = player_name                                # Change what was data-item to player_name to correspond to change made to k and v variable on line 253.
+#          if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
+#              highest_shoe_value = stats[:shoe]
+#              highest_shoe_key = player_name                               # Change what was data-item to player_name to correspond to change made to k and v variable on line 253.
 
-              players_number_of_rebounds = stats[:rebounds]
+#              players_number_of_rebounds = stats[:rebounds]
  
-          end
+#          end
 #        end                                                                # Don't need this. This done in line 253.
         
 #      end                                                                  # Don't need this. This done in line 253.
        
 #    end                                                                    # Don't need this. This done in line 253.
-  end
+#  end
 #  binding.pry
-  return players_number_of_rebounds          
-end
+#  return players_number_of_rebounds          
+#end 
 
     
  
