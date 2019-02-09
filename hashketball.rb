@@ -171,7 +171,9 @@ def big_shoe_rebounds
   
   highest_shoe_key = nil 
   
-  highest_shoe_value = nil 
+  highest_shoe_value = nil
+  
+  number_of_rebounds = nil 
   
   game_hash.each do |location, team_data|
     
@@ -182,6 +184,8 @@ def big_shoe_rebounds
         data.each do |data_item, stats|
 
           stats.each do |stat_key, stat_value|
+            
+           
 #binding.pry             
             if highest_shoe_value == nil || stats[:shoe] > highest_shoe_value
               
@@ -189,16 +193,18 @@ def big_shoe_rebounds
               
               highest_shoe_key = data_item
               
+              number_of_rebounds = stats[:rebounds] 
+              
               
 #binding.pry             
             end
           end
         end
-      
-     
       end 
     end 
-  end 
+  end
+  return number_of_rebounds 
+#binding.pry
 end 
 
 
@@ -212,8 +218,7 @@ end
 #              highest_key = stat_key
      
     
-     
-
+ 
     
     
   
