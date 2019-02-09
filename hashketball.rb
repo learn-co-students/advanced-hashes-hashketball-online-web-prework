@@ -180,26 +180,23 @@ def big_shoe_rebounds
       if attribute == :players 
       
         data.each do |data_item, stats|
-#binding.pry 
-  
+
           stats.each do |stat_key, stat_value|
-            
+#binding.pry             
             if highest_shoe_value == nil || stats[:shoe] > highest_shoe_value
               
               highest_shoe_value = stats[:shoe]
               
-              highest_shoe_key = data_item 
-               
- 
+              highest_shoe_key = data_item
+              
+              
+#binding.pry             
             end
-            
           end
-
         end
-        return highest_shoe_key[:rebounds]
-       # binding.pry
-      end 
+      
      
+      end 
     end 
   end 
 end 
