@@ -176,25 +176,25 @@ def player_stats(player_name)
 end 
 
 
-#def big_shoe_rebounds
-#  highest_shoe_key = 0 
-#  highest_shoe_value = 0
-#  players_number_of_rebounds = 0 
-#  game_hash.each do |location, team_data|
-#    team_data.each do |attribute, data|
-#      if attribute == :players                # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
-#        data.each do |data_item, stats|
-#          if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
-#              highest_shoe_value = stats[:shoe]
-#              highest_shoe_key = data_item
-#              players_number_of_rebounds = stats[:rebounds] 
-#          end
-#        end
-#      end 
-#    end                                       # This method passes all spec.rb tests!
-#  end
-#  return players_number_of_rebounds           # See explanation notes of this passing method directly below. 
-#end
+def big_shoe_rebounds
+  highest_shoe_key = 0 
+  highest_shoe_value = 0
+  players_number_of_rebounds = 0 
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+      if attribute == :players                # The purpose of this line of code and what it's doing is the same as above. See commented notes for Line 80 above.
+        data.each do |data_item, stats|
+          if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
+              highest_shoe_value = stats[:shoe]
+              highest_shoe_key = data_item
+              players_number_of_rebounds = stats[:rebounds] 
+          end
+        end
+      end 
+    end                                       # This method passes all spec.rb tests!
+  end
+  return players_number_of_rebounds           # See explanation notes of this passing method directly below. 
+end
                                                # Then see lines 248-292 for simplified/refactored (more abstract with less code smell) version of this method. 
 
 
@@ -277,44 +277,44 @@ end
 
     
  
-def big_shoe_rebounds
-  highest_shoe_key = 0 
-  highest_shoe_value = 0
-  players_number_of_rebounds = 0
-  game_hash[:home][:players].each do |player_name, stats|                   
-    if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
-      highest_shoe_value = stats[:shoe]
-      highest_shoe_key = player_name                                
-      players_number_of_rebounds = stats[:rebounds]
-    end
-  end
-  return players_number_of_rebounds                   
-end   
+#def big_shoe_rebounds
+#  highest_shoe_key = 0 
+#  highest_shoe_value = 0
+#  players_number_of_rebounds = 0
+#  game_hash[:home][:players].each do |player_name, stats|                   
+#    if highest_shoe_value == 0 || stats[:shoe] > highest_shoe_value  
+#      highest_shoe_value = stats[:shoe]
+#      highest_shoe_key = player_name                                
+#      players_number_of_rebounds = stats[:rebounds]
+#    end
+#  end
+#  return players_number_of_rebounds                   
+#end   
                      # This method is re-factored but not correct because it is only iterating through the home team player stats -                                                                    see line 284 game_hash[:home]. Just by chance that the player with the highest shoe size is in the home team                                                                    players hash and thats why it passes the spec.rb tests. So I'm commenting out this refactored method and                                                                        returing to my original long (code smelly) method and moving on.      
  
 
-def most_points_scored
+#def most_points_scored
   
-  highest_points_key = 0
-  highest_points_value = 0 
+#  highest_points_key = 0
+#  highest_points_value = 0 
 #  player_highest_points = 0
   
-  game_hash[:home][:players].each do |player_name, stats|
+#  game_hash[:home][:players].each do |player_name, stats|
     
-    if highest_points_value == 0 || stats[:points] > highest_points_value
+#    if highest_points_value == 0 || stats[:points] > highest_points_value
 
-      highest_points_value = stats[:points]
+#      highest_points_value = stats[:points]
  
-      highest_points_key = player_name
+#      highest_points_key = player_name
       
  
- binding.pry       
+# binding.pry       
 #          end  
 #        end   
-    end 
-  end
-  return highest_points_key 
-end  
+#    end 
+#  end
+#  return highest_points_key 
+#end  
     
 # As per discussion with AAQ Coach, research .fetch if I want to take on the bonus questions. This lab is a monster and not well placed in the curriculum. I have exercised all do diligence with the code I have written and trying to understand all the concepts at my level of understanding. I'm in good shape to move on.  
   
