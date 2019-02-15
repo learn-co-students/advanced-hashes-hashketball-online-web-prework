@@ -195,11 +195,14 @@ def player_numbers(team_name)
 end
 
 def player_stats(name)
-  game_hash.collect do |location, team_data|
+  game_hash.each do |location, team_data|
     if team_data[:players].keys.include?(name)
-      team_data[:players][name]
+      return team_data[:players][name]
     end
-  end.flatten.compact
+  end
 end
 
+def big_shoe_rebounds
+  player_with_largest_shoe = nil
+  
       
