@@ -203,6 +203,74 @@ def player_stats(name)
 end
 
 def big_shoe_rebounds
-  player_with_largest_shoe = nil
+  largest_shoe = 0
+  rebounds = nil
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |data, attributes|
+      if attributes[:shoe] > largest_shoe
+        largest_shoe = attributes[:shoe]
+        rebounds = attributes[:rebounds]
+      end
+    end
+  end
+  rebounds
+end
+
+def most_points_scored
+  most_points = 0
+  player_most_points = nil
   
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player, attributes|
+      if attributes[:points] >= most_points
+        most_points = attributes[:points]
+        player_most_points = player
+      end
+    end
+    player_most_points
+  end
+  
+end
       
+def winning_team
+  most_points = 0
+  winner = nil
+  
+  game_hash.each do |location, team_data|
+    team_points = 0
+    team_data[:players].each do |player, attributes|
+      team_points += attributes[:points]
+    end
+
+    if team_points > most_points 
+      most_points = team_points
+      winner = team_data[:team_name]
+    end
+  end
+  winner
+end
+
+def player_with_longest_name
+  longest_name = ""
+  
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |name, attributes|
+      if name.size > longest_name.size
+        longest_name = name
+      end
+    end
+  end
+  longest_name
+end
+
+def long_name_steals_a_ton
+  most_steals = 0
+  most_steals_player = ""
+  
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |name, attributes|
+      binding.pry
+    end
+  end
+end
+  
