@@ -160,19 +160,28 @@ def team_names
  end
 end
 
-def player_numbers(player_name) 
-  
-  game_hash.collect  do |location, team_stats|
+def player_numbers(team_name) 
+    #number = []
     
-    if team_stats[:number] == player_name
-      
-      return team_stats[:number]
+    if game_hash[:home][:team_name] == team_name
+        # game_hash[:home][:players].map do |name, player_stats|
+        #   player_stats[:number]
+        # end
+        get_player_numbers(game_hash[:home][:players])
+    else
+        # game_hash[:away][:players].map do |name, player_stats|
+        #   player_stats[:number]
+        # end
+       get_player_numbers(game_hash[:away][:players])
     end
-  end
   
+    #game_hash[:home][:team_name] == team_name ? get_player_numbers(game_hash[:home][:players]) : get_player_numbers(game_hash[:away][:players])
+    #number
 end
 
-
+def get_player_numbers(whatever)
+  whatever.map{|name, stats| stats[:number]}
+end
 
 
 
