@@ -183,6 +183,30 @@ def get_player_numbers(whatever)
   whatever.map{|name, stats| stats[:number]}
 end
 
+def player_stats(player_name)
+   
+  game_hash.each do |location, player_stat|
+  
+    player_stat[:players].each do |name, data|
+      
+     if name  == player_name
+      return  data
+     end
+   end
+  end
+end
+
+def big_shoe_rebounds
+  game_hash.each do |location, player_stat|
+    player_stat[:players].each do |name, data|
+    
+      if data[:rebounds] > 
+        return data[:rebounds]
+      end
+    end
+  end 
+end 
+
 
 
 
