@@ -7,7 +7,7 @@ def game_hash
       :colors => ["Black", "White"],
       :players => {
         "Alan Anderson" => {
-          :number => "0",
+          :number => 0,
           :shoe => 16,
           :points => 22,
           :rebounds => 12,
@@ -17,7 +17,7 @@ def game_hash
           :slam_dunks => 1
         },
         "Reggie Evans" => {
-          :number => "30",
+          :number => 30,
           :shoe => 14,
           :points => 12,
           :rebounds => 12,
@@ -27,7 +27,7 @@ def game_hash
           :slam_dunks => 7
         },
         "Brook Lopez" => {
-          :number => "11",
+          :number => 11,
           :shoe => 17,
           :points => 17,
           :rebounds => 19,
@@ -37,7 +37,7 @@ def game_hash
           :slam_dunks => 15
         },
         "Mason Plumlee" => {
-          :number => "1",
+          :number => 1,
           :shoe => 19,
           :points => 26,
           :rebounds => 12,
@@ -47,7 +47,7 @@ def game_hash
           :slam_dunks => 5
         },
         "Jason Terry" => {
-          :number => "31",
+          :number => 31,
           :shoe => 15,
           :points => 19,
           :rebounds => 2,
@@ -60,10 +60,10 @@ def game_hash
     }, 
     :away => {
       :team_name => "Charlotte Hornets",
-      :colors => ["Turqoise", "Purple"],
+      :colors => ["Turquoise", "Purple"],
       :players => {
         "Jeff Adrien" => {
-          :number => "4",
+          :number => 4,
           :shoe => 18,
           :points => 10,
           :rebounds => 1,
@@ -73,7 +73,7 @@ def game_hash
           :slam_dunks => 2
         },
         "Bismak Biyombo" => {
-          :number => "0",
+          :number => 0,
           :shoe => 16,
           :points => 12,
           :rebounds => 4,
@@ -83,7 +83,7 @@ def game_hash
           :slam_dunks => 10
         },
         "DeSagna Diop" => {
-          :number => "2",
+          :number => 2,
           :shoe => 14,
           :points => 24,
           :rebounds => 12,
@@ -93,7 +93,7 @@ def game_hash
           :slam_dunks => 5
         },
         "Ben Gordon" => {
-          :number => "8",
+          :number => 8,
           :shoe => 15,
           :points => 33,
           :rebounds => 3,
@@ -103,7 +103,7 @@ def game_hash
           :slam_dunks => 0
         },
         "Brendan Haywood" => {
-          :number => "33",
+          :number => 33,
           :shoe => 15,
           :points => 6,
           :rebounds => 12,
@@ -145,15 +145,53 @@ def team_colors(team_name)
 end
 
 def team_names
+  teamsPlayed = []
+  game_hash.each {|side, team_data|
+    teamsPlayed << team_data[:team_name]
+  }
+  
+  teamsPlayed
 end
 
-def player_numbers
+def player_numbers(team_name)
+  player_numbers = []
+  game_hash.each {|key, value|
+    if value[:team_name] == team_name
+      value[:players].each {|key, value|
+        player_numbers << value[:number]
+      }
+    end
+  }
+  
+  player_numbers
+
 end
 
-def player_stats
+def player_stats(player)
+  stats = {}
+  game_hash.each {|key, value|
+    if value[:players].keys.include?(player)
+      stats = value[:players][player]
+    end
+  }
+  stats
 end
 
 def big_shoe_rebounds
+  rebounds = {}
+  bigShoe = 0
+  game_hash.each {|key, value|
+    value[:players].each {|k,v|
+      if v[:shoe] > bigShoe
+        rebounds = {v[:shoe] => v[:rebounds]}
+        binding.pry
+        bigShoe = v[:shoe]
+        binding.pry
+      end
+    }
+  }
+  binding.pry
+  rebounds[:shoe]
 end
 
 
