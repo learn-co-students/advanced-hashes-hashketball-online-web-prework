@@ -178,20 +178,33 @@ def player_stats(player)
 end
 
 def big_shoe_rebounds
-  rebounds = {}
+  player = {}
   bigShoe = 0
-  game_hash.each {|key, value|
-    value[:players].each {|k,v|
-      if v[:shoe] > bigShoe
-        rebounds = {v[:shoe] => v[:rebounds]}
-        binding.pry
-        bigShoe = v[:shoe]
-        binding.pry
-      end
-    }
+  
+  game_hash[:home][:players].each{|k,v|
+    binding.pry
+    if v[:shoe] > bigShoe
+      player = {:shoe => v[:shoe], :rebounds => v[:rebounds]}
+      binding.pry
+      bigShoe = v[:shoe]
+      binding.pry
+    end
   }
-  binding.pry
-  rebounds[:shoe]
+  
+  player[:rebounds]
+  
+  # game_hash.each {|key, value|
+  #   value[:players].each {|k,v|
+  #     if v[:shoe] > bigShoe
+  #       rebounds = {v[:shoe] => v[:rebounds]}
+  #       binding.pry
+  #       bigShoe = v[:shoe]
+  #       binding.pry
+  #     end
+  #   }
+  # }
+  # binding.pry
+  # rebounds[:shoe]
 end
 
 
