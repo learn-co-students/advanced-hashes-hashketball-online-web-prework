@@ -181,10 +181,11 @@ def big_shoe_rebounds
   player = {}
   bigShoe = 0
   
-  game_hash[:home][:players].each{|k,v|
-    if v[:shoe] > bigShoe
-      player[:rebounds] = v[:rebounds]
-      bigShoe = v[:shoe]
+  game_hash[:home][:players].each{|player, stats|
+    if stats[:shoe] > bigShoe
+      player[:rebounds] = stats[:rebounds]
+      bigShoe = stats[:shoe]
+      binding.pry
     end
   }
   
