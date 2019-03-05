@@ -120,26 +120,22 @@ def game_hash
 end
 
 def num_points_scored(player_name)
-  arr = []
-  game_hash.each do |location, team_data|
-    arr << team_data.find do |attribute, data|
 
-      if attribute == :players && team_data[:players].keys.include?(player_name)
-        team_data[attribute][player_name][:points]
-
-      end
-      #binding.pry
+  game_hash.find do |location, team_data|
+    if team_data[:players].keys.include?(player_name)
+      return team_data[:players][player_name][:points]
     end
+  end
 
-  end#.flatten.delete_if {|element| element == nil}[0]
-  arr
 end
 
 def shoe_size(player_name)
   #binding.pry
-  game_hash.map{|location, team_data|
-    team_data.map {|attribute, data| team_data[:players][player_name][:shoe] if attribute == :players && team_data[:players].keys.include?(player_name)}
-  }.flatten.delete_if {|element| element == nil}[0]
+  game_hash.find do |location, team_data|
+    if team_data[:players].keys.include?(player_name)
+      return team_data[:players][player_name][:shoe]
+    end
+  end
 end
 
 def team_colors(team_name)
