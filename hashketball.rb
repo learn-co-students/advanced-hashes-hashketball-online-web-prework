@@ -140,9 +140,9 @@ end
 
 def team_colors(team_name)
   #binding.pry
-  game_hash.map{|location, team_data|
-    team_data[:colors] if team_data[:team_name] == team_name
-  }.flatten.delete_if {|element| element == nil}
+  game_hash.find{|location, team_data|
+    return team_data[:colors] if team_data[:team_name] == team_name
+  }
 end
 
 def team_names
@@ -166,6 +166,25 @@ def player_stats(player_name)
 end
 
 def big_shoe_rebounds
+
+shoe_sizes = []
+  game_hash.each {|location, team_data|
+    team_data.each {|attribute, data|
+      shoe_sizes << data.map {|player, stats| stats[:shoe]} if data.class == Hash
+    }
+  }
+
+  biggest_shoe = shoe_sizes.flatten.uniq!.max
+
+  players_data = game_hash.map {|location, team_data|
+    game_hash[location][:players]}
+  players_data_merged = players_data[0].merge(players_data[1])
+
+  players_data_merged.map {|player, data|
+
+    return data[:rebounds] if data[:shoe] == biggest_shoe
+  }
+
 end
 
 def most_points_scored
