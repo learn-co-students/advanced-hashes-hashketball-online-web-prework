@@ -188,9 +188,36 @@ shoe_sizes = []
 end
 
 def most_points_scored
+  player_points = []
+    game_hash.each {|location, team_data|
+      team_data.each {|attribute, data|
+        player_points << data.map {|player, stats| stats[:points]} if data.class == Hash
+      }
+    }
+
+    most_points = player_points.flatten.uniq!.max
+
+    players_data = game_hash.map {|location, team_data|
+      game_hash[location][:players]}
+    players_data_merged = players_data[0].merge(players_data[1])
+
+    players_data_merged.map {|player, data|
+      return player if data[:points] == most_points
+    }
 end
 
 def winning_team
+  team_points = {}
+
+  game_hash.map {|location, team_data|
+
+    team_points[location] = eval team_data[:players].map {|player, stats|
+      stats[:points]
+    }.join '+'
+  }
+  
+  game_hash[team_points.key(team_points.values.max)][:team_name]
+
 end
 
 def player_with_longest_name
