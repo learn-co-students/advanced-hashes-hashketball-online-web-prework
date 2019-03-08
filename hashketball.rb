@@ -162,7 +162,8 @@ end
 
 def player_stats(player_name)
   #binding.pry
-  game_hash.map{|location, team_data| team_data[:players][player_name]}.delete_if {|element| element == nil}[0]
+  game_hash.map{|location, team_data|
+    team_data[:players][player_name]}.delete_if {|element| element == nil}[0]
 end
 
 def big_shoe_rebounds
@@ -191,7 +192,9 @@ def most_points_scored
   player_points = []
     game_hash.each {|location, team_data|
       team_data.each {|attribute, data|
-        player_points << data.map {|player, stats| stats[:points]} if data.class == Hash
+        if data.class == Hash
+          player_points << data.map {|player, stats| stats[:points]}
+        end
       }
     }
 
@@ -215,13 +218,39 @@ def winning_team
       stats[:points]
     }.join '+'
   }
-  
+
   game_hash[team_points.key(team_points.values.max)][:team_name]
 
 end
 
 def player_with_longest_name
+  players_data = game_hash.map {|location, team_data|
+    game_hash[location][:players]
+  }
+  players_name_length = {}
+  players_data[0].merge(players_data[1]).keys.each {|player|
+    players_name_length[player] = player.length
+  }
+  players_name_length.key(players_name_length.values.max)
 end
 
 def long_name_steals_a_ton?
+  player_steals = []
+  game_hash.each {|location, team_data|
+    team_data.each {|attribute, data|
+      if data.class == Hash
+        player_steals << data.map {|player, stats| stats[:steals]}
+      end
+    }
+  }
+  most_steals = player_steals.flatten.uniq!.max
+
+  players_data = game_hash.map {|location, team_data|
+    game_hash[location][:players]}
+  players_data_merged = players_data[0].merge(players_data[1])
+
+  player_with_longest_name == players_data_merged.find {|player, data|
+    player if data[:steals] == most_steals
+  }.first ? true : false
+
 end
