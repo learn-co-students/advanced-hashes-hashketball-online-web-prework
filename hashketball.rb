@@ -181,20 +181,12 @@ return array
 end  
 
 def player_stats(player_name)
-  array2=[]
-  game_hash.each do |location, team_data|
-      team_data.each do |attribute, values|
-          if attribute == :players
-            values.each do |person, data|
-                if person == player_name
-                  array2.push(data )
-                end
-            end
-          end
-      end
-  end
-  return array2[0]
-end
+  game_hash.keys.each do |team|
+    if game_hash[team][:players].keys.include?(player_name)
+      return game_hash[team][:players][player_name]
+    end 
+  end 
+end 
              
 
                                            
