@@ -121,7 +121,7 @@ def game_hash
 
 def num_points_scored(players_name)
   game_hash.each do |k1, v1| #iterate layer 1
-    v1k2[:players].each do |player| 
+    v1[:players].each do |player| 
       if player[:players].find == players_name
         return player[:points]
   end
