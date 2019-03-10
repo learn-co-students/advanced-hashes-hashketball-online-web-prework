@@ -119,14 +119,15 @@ def game_hash
   
 }
 
-def num_points_scored(players_name)
-  game_hash.each do |k1, v1| #iterate layer 1
-    v1[:players].each do |player| 
-      if player[:players].find == players_name
-        return player[:points]
+def num_points_scored(player_name)
+    game_hash.each do |location, team_info| #iterate layer 1
+      team_info.each  do |k,v|
+        if v.include?(player_name) 
+          return game_hash[location][k][player_name][:points]
+        end 
+      end
+     end
   end
-end
-end
 
 def shoe_size(player_name)
 
