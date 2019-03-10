@@ -131,13 +131,13 @@ def team_names
     team_array=[]
     team_name=""
     game_hash.each do |location,values|
-     values.each do |k,v|
-       if k == :team_name
-         team_array<<v 
-end
-end 
-end 
-team_array
+      values.each do |k,v|
+        if k == :team_name
+          team_array << v 
+        end
+      end
+    end 
+    team_array
 end
     
  def big_shoe_rebounds
@@ -170,7 +170,7 @@ game_hash.each do |location,values|
 if game_hash[location].values.include?(name)
 values.each do |k,v| if k == :players 
 v.each do |x,y| 
-array<<game_hash[location][k][x][:number].to_i
+array << game_hash[location][k][x][:number].to_i
 
 end
 end
@@ -187,10 +187,69 @@ def player_stats(player_name)
     end 
   end 
 end 
-             
 
-                                           
-                                           
-                                           
-                              
+def player_points(player_name)
+ game_hash.keys.each do |team|
+    if game_hash[team][:players].keys.include?(player_name)
+      return game_hash[team][:players][player_name][:points]
+    end
+  end
+end 
+
+def most_points_scored
+   most_point = 0
+   player_with_most = nil
+   game_hash.each do |location, team_data|
+      team_data[:players].each do |player_name, value|
+         if player_points(player_name) > most_point
+           most_point= player_points(player_name)
+           player_with_most = player_name
+         end
+      end
+   end
+   player_with_most
+end
+
+
+def winning_team 
+home=0 
+away=0 
+total_home=0
+total_away=0
+  
+  game_hash[:home][:players].each do |player, points|
+    home= player_points(player)
+    total_home=total_home + home
+    
+  end 
+     game_hash[:away][:players].each do |players,points|
+       away=player_points(players)
+       total_away= total_away+away
+     end
+    
+      if total_home > total_away
+             return "Brooklyn Nets"
+        else 
+            return "Charolette Hornets"
+        
+      end 
+end
+
+
+def player_with_longest_name
+  name_length=0
+  player_with=nil
+  game_hash.each do |location, values|
+     game_hash[location][:players].each do |players,stats|
+        if players.to_s.size > name_length
+          name_length= players.to_s.size
+          player_with=players
+        end 
+        
+     end 
+  end
+  player_with
+end 
+
+
 
