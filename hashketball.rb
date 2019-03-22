@@ -222,3 +222,78 @@ def big_shoe_rebounds
   (player_data_array[3])[:rebounds]
 end
 
+def most_points_scored
+  name_array = []
+  points_array = []
+  game_hash.each do |loc, team_data|
+    team_data.each do |attribute, data|
+    if attribute == :players
+      data.each do |player_name, player_data|
+        name_array << player_name
+        points_array << player_data.fetch(:points)
+      end
+    end
+    end
+  end
+  name_array[points_array.index(points_array.max)]
+end
+
+def winning_team
+  home_points = []
+  home_sum = 0
+  away_points = []
+  away_sum = 0
+  game_hash[:home][:players].each do |player_name, player_data|
+    home_points << player_data.fetch(:points)
+  end
+  game_hash[:away][:players].each do |player_name, player_data|
+    away_points << player_data.fetch(:points)
+  end
+  home_points.each {|x| home_sum += x}
+  away_points.each {|x| away_sum += x}
+  if home_sum > away_sum
+    "Brooklyn Nets"
+  elsif away_sum > home_sum
+    "Charlotte Hornets"
+  elsif home_sum == away_sum
+    "DRAW"
+  end
+end
+    
+def player_with_longest_name
+  names_array = []
+  length_array = []
+  game_hash.each do |loc, team_data|
+    team_data.each do |attribute, data|
+      if attribute == :players
+        data.each do |player_name, player_data|
+          names_array << player_name
+        end
+      end
+    end
+  end
+  names_array.each do |name|
+    length_array << name.length
+  end
+  names_array[length_array.index(length_array.max)]
+end
+
+def long_name_steals_a_ton?
+  name_array = []
+  steals_array = []
+  game_hash.each do |loc, team_data|
+    team_data.each do |attribute, data|
+    if attribute == :players
+      data.each do |player_name, player_data|
+        name_array << player_name
+        steals_array << player_data.fetch(:steals)
+      end
+    end
+    end
+  end
+  if name_array[steals_array.index(steals_array.max)] == player_with_longest_name
+    TRUE
+  end
+end
+
+          
