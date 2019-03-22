@@ -82,7 +82,7 @@ def game_hash
           blocks: 15,
           slam_dunks: 10
         },
-        "Desagna Diop" => {
+        "DeSagna Diop" => {
           number: 2,
           shoe: 14,
           points: 24,
@@ -118,7 +118,7 @@ def game_hash
 end
 
 def num_points_scored(name)
-  target_data = nil
+  target_data = 0
   game_hash.each do |loc, team_data|
     team_data.each do |attribute, data|
     if attribute == :players
@@ -134,7 +134,91 @@ def num_points_scored(name)
     end
     end
   end
+  return target_data
+end
+
+def shoe_size(name)
+    game_hash.each do |loc, team_data|
+    team_data.each do |attribute, data|
+    if attribute == :players
+      data.each do |player_name, player_data|
+        if player_name == name
+        player_data.each do |a, b|
+          if a == :shoe
+            return b
+          end
+        end
+      end
+      end
+    end
+    end
+  end
+end
+
+def team_colors(name)
+  if name == "Charlotte Hornets"
+    game_hash[:away][:colors]
+  elsif name == "Brooklyn Nets"
+    game_hash[:home][:colors]
+  end
+end
+
+def team_names
+  target_data = []
+  game_hash.each do |loc, team_data|
+    target_data << team_data.fetch(:team_name)
+  end
   target_data
-  binding.pry
+end
+
+def player_numbers(name)
+  target_data = []
+  if name == "Charlotte Hornets"
+    game_hash[:away][:players].each do |player_name, player_data|
+      target_data << player_data.fetch(:number)
+    end
+  elsif name == "Brooklyn Nets"
+   game_hash[:home][:players].each do |player_name, player_data|
+      target_data << player_data.fetch(:number)
+   end
+  end
+  target_data
+end
+
+def player_stats(name)
+  game_hash.each do |loc, team_data|
+   team_data.each do |attribute, data|
+    if attribute == :players
+      data.each do |player_name, player_data|
+        if player_name == name
+          return player_data
+        end
+      end
+    end
+  end
+end
+end
+
+def big_shoe_rebounds
+  player_data_array = []
+  shoe_array = []
+  game_hash.each do |loc, team_data|
+    team_data.each do |attribute, data|
+    if attribute == :players
+      data.each do |player_name, player_data|
+        player_data_array << player_data
+      end
+    end
+    end
+  end
+  player_data_array.each do |a, b|
+    a.each do |k, v|
+     if k == :shoe
+       shoe_array << v
+     end
+    end
+  end
+  target_index = shoe_array.index(shoe_array.max)
+  (player_data_array[3])[:rebounds]
 end
 
