@@ -14,7 +14,7 @@ def game_hash
           :assists => 12,
           :steals => 3,
           :blocks => 1,
-          :slam_dunks => 0,
+          :slam_dunks => 1,
         },
         "Reggie Evans" => {
           :number => 30,
@@ -44,7 +44,7 @@ def game_hash
           :assists => 6,
           :steals => 3,
           :blocks => 8,
-          :slam_dunks => 1
+          :slam_dunks => 5
         },
         "Jason Terry" => {
           :number => 31,
@@ -164,6 +164,16 @@ def player_numbers(team_name)
   elsif team_name == "Charlotte Hornets"
     game_hash[:away][:players].collect do |attribute, value|
       value[:number]
+    end
+  end
+end
+
+def player_stats(player_name)
+  game_hash.each do |team, data|
+    data[:players].each do |attribute, value|
+      if attribute == player_name
+        return value
+      end
     end
   end
 end
