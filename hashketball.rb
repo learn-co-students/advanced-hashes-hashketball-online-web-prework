@@ -177,3 +177,18 @@ def player_stats(player_name)
     end
   end
 end
+
+def big_shoe_rebounds
+  shoe_sizes = []
+  game_hash.each do |team, data|
+    data[:players].each do |attribute, value|
+        value.each do |group, stat|
+        if group == :shoe
+          shoe_sizes << value[:shoe]
+        end
+      end
+    end
+  end
+  shoe_sizes.sort.reverse
+  return shoe_sizes[0]
+end
