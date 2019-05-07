@@ -179,16 +179,19 @@ def player_stats(player_name)
 end
 
 def big_shoe_rebounds
-  shoe_sizes = []
+  shoe_size = nil
+  rebounds = nil
   game_hash.each do |team, data|
     data[:players].each do |attribute, value|
         value.each do |group, stat|
         if group == :shoe
-          shoe_sizes << value[:shoe]
+          if shoe_size == nil || shoe_size < value[:shoe]
+            shoe_size = value[:shoe]
+            rebounds = value[:rebounds]
+          end
         end
       end
     end
   end
-  shoe_sizes.sort.reverse
-  return shoe_sizes[0]
+  rebounds
 end
