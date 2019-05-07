@@ -155,3 +155,15 @@ def team_names
     data[:team_name]
   end
 end
+
+def player_numbers(team_name)
+  if team_name == "Brooklyn Nets"
+    game_hash[:home][:players].collect do |attribute, value|
+      value[:number]
+    end
+  elsif team_name == "Charlotte Hornets"
+    game_hash[:away][:players].collect do |attribute, value|
+      value[:number]
+    end
+  end
+end
