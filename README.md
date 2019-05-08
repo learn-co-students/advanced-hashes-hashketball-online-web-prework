@@ -1,4 +1,4 @@
-# Hashketball
+are# Hashketball
 
 ## Objectives
 
