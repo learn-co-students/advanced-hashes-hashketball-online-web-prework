@@ -117,16 +117,230 @@ def game_hash
   }
 end
 
-
 def num_points_scored(name)
   hash = game_hash
   hash.each do |location, info| 
-    info.each do |attribute, data|
-      if data.include?(name) 
-       return hash[location][attribute][data][name][:points]
+    binding.pry
+    info.each do |info, data|
+      if data.include?(name)
+          return hash[location][info][data_item][name][:points]
       end
     end
   end
 end
+end
 
 
+def shoe_size(player_name)
+
+playershoesize = 0 
+
+ game_hash.collect do |team, stats|
+
+  stats[:players].collect do |player, data|
+
+
+
+    if player == player_name
+
+      playershoesize += data[:shoe]
+
+    end 
+
+  end 
+
+ end 
+
+ playershoesize
+
+end 
+
+    
+
+
+
+def shoe_size(name)
+
+  game_hash.each do |team, details_hash|
+
+    players_array = details_hash[:players]
+
+      players_array.each do |player_details_hash|
+
+        if player_details_hash[:name] == name
+
+          answer = player_details_hash[:shoe]
+
+        end
+
+      end
+
+  end
+
+  answer
+
+end
+
+
+
+def team_names
+
+  hash = game_hash
+
+  array = []
+
+  hash.each do |location, attributes|
+
+    attributes.each do |attribute, info|
+
+      if attribute == :team_name
+
+        array << info
+
+      end
+
+    end
+
+  end
+
+  return array
+
+end
+
+
+
+def team_colors(team_name)
+
+  hash = game_hash
+
+  array = []
+
+  hash.each do |location, attributes|
+
+    if hash[location].values.include?(team_name)
+
+      attributes.each do |attribute, info|
+
+        if attribute == :colors
+
+          return info
+
+        end
+
+      end
+
+    end
+
+  end
+
+end
+
+
+
+def player_numbers(team_name)
+
+  hash = game_hash
+
+  array = []
+
+  hash.each do |location, attributes|
+
+    if hash[location].values.include?(team_name) #if location hash include the team_name argument block_given then iterate over attributes value 
+
+      attributes.each do |attribute, info| #this level has the team_name,colors, and players keys (under attributes), the info is the value of player names
+
+        if info.class == Hash #if info = a hash iterate 
+
+          info.each do |player, stats| #info hash has key of player names and value of stats keys (i.e points, number )
+
+            stats.each do |stat, int|
+
+              if stat == :number
+
+                array << int.to_i
+
+              end
+
+            end
+
+          end
+
+        end
+
+      end
+
+    end
+
+  end
+
+  return array
+
+end
+
+
+
+def player_stats(name)
+
+  hash = game_hash
+
+  hash.each do |location, attributes|
+
+    attributes.each do |attribute, info|
+
+      if info.include?(name)
+
+       return hash[location][attribute]
+
+      end
+
+    end
+
+  end
+
+end
+
+
+
+def big_shoe_rebounds
+
+  hash = game_hash
+
+  player_name = ""
+
+  shoe_size = 0
+
+  hash.each do |location, attributes|
+
+    attributes.each do |attribute, info|
+
+      if info.class == Hash
+
+        info.each do |player, stats|
+
+            stats.each do |stat, int|
+
+              if stat == :shoe
+
+                if int > shoe_size
+
+                  shoe_size = int
+
+                  player_name = player
+
+                end
+
+              end
+
+            end
+
+          end
+
+        return hash[location][attribute][player_name][:rebounds]
+
+      end
+
+    end
+
+  end
+
+end
