@@ -161,12 +161,78 @@ def team_names
   return array
 end
 
+def find_the_team(team)
+game_hash.values.find do |location|
+  location.fetch(:team_name) == team
+end
+end
+
 def player_numbers(team)
-  game_hash.each do |location, team_info|
-    team_info.each do |names, stats|
-      if team == stats
-      return team_info[:number]
+  players = find_the_team(team)[:players]
+  players.map do |location, team_info|
+      team_info[:number]
     end
+end
+
+def player_stats(player)
+  game_hash.map do |location, team_info|
+  team_info[:players].map do |name, stats|
+    if name.include?(player)
+       return stats
     end
   end
+end
+end
+
+def big_shoe
+  game_hash.map do |location, team_info|
+    team_info[:players].map do |name, stats|
+      stats.fetch(:shoe)
+    end
+  end
+end
+
+def big_shoe_rebounds
+  shoe_size = big_shoe.flatten.max
+  game_hash.map do |location, team_info|
+    team_info[:players].map do |name, stats|
+    if shoe_size == stats[:shoe]
+      return stats[:rebounds]
+    end
+  end
+end
+end
+
+def most_points
+  game_hash.map do |location, team_info|
+    team_info[:players].map do |name, stats|
+      stats.fetch(:points)
+  end
+  end
+end
+
+def most_points_scored
+  most_scored = most_points.flatten.max
+  game_hash.map do |location, team_info|
+    team_info[:players].map do |name, stats|
+      if most_scored == stats[:points]
+        return name
+      end
+    end
+  end
+end
+
+def team_score
+  game_hash.map do |location, team_info|
+    team_info.map do |name, stats|
+        binding.pry
+      if stats.include?
+
+    end
+end
+end
+end
+
+def winning_team
+  team_score
 end
