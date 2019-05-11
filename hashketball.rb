@@ -150,22 +150,88 @@ def player_numbers(team_name)
        data.each do |attribute, num|
        if attribute == :number
           jerseys << num 
+        end
+      end
+    end
   elsif game_hash[:away][:team_name].include?(team_name)
     hash_away = game_hash[:away][:players]
-    binding.pry 
      hash_away.each do |name, data|
        data.each do |attribute, num|
        if attribute == :number
           jerseys << num 
-end 
-end
-end
-end
-end
-end 
-end
+        end 
+      end 
+    end 
+  end
 return jerseys
 end 
 
-player_numbers("Charlotte Hornets")
 
+
+def player_stats(players_name)
+  if game_hash[:home][:players].include? (players_name)
+     return game_hash[:home][:players][players_name]
+  elsif game_hash[:away][:players].include? (players_name)
+   return game_hash[:away][:players][players_name]
+end 
+end 
+
+
+def big_shoe_rebounds
+  biggest_shoe = 0 
+  number_of_rebounds = 0 
+  game_hash.each do |team, stats|
+    stats[:players].each do |name, data| 
+      if biggest_shoe < data[:shoe]
+        biggest_shoe = data[:shoe]
+        number_of_rebounds = data[:rebounds]
+      end 
+    end
+  end
+  return number_of_rebounds
+end 
+
+# def big_shoe_rebounds
+     
+#     def get_sizes
+#       sizes = []
+#       hash_away = game_hash[:away][:players]
+#         hash_away.each do |name, data|
+#           data.each do |attribute, num|
+#           if attribute == :shoe 
+#             sizes << num 
+#           end 
+#         end
+#       end 
+#       hash_home = game_hash[:home][:players]
+#         hash_home.each do |name, data|
+#           data.each do |attribute, num|
+#           if attribute == :shoe 
+#             sizes << num 
+#           end 
+#         end 
+#       end 
+#       return sizes 
+#       end 
+  
+#     def find_player(biggest)
+#       home_hash = game_hash[:home][:players]
+#       away_hash = game_hash[:away][:players]
+#       if home_hash.include?(:shoe => biggest) 
+#       home_hash.select {|person, data| data == {:shoe => biggest}}
+#       elsif  away_hash.include?(:shoe => biggest) 
+#       away_hash.select {|person, data|data == {:shoe => biggest}}
+#         end 
+#       end 
+  
+# sizes = get_sizes 
+# sorted_sizes = sizes.sort 
+# biggest = sorted_sizes[-1]
+# big_shoe_player = find_player(biggest)
+  
+# if game_hash[:away][:players].include?(big_shoe_player)
+#   return game_hash[:away][:players][big_shoe_player][:rebounds]
+#   elsif game_hash[:home][:players].include?(big_shoe_player)
+#     return game_hash[:home][:players][big_shoe_player][:rebounds]
+#   end
+# end
