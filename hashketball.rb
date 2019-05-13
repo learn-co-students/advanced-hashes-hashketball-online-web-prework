@@ -230,6 +230,41 @@ def player_stats(player_name)
   end
 end
 
-def big_shoe_rebound(player_name)
+def big_shoe_rebounds
+  shoes = {}
+  
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+      if attribute == :players
+        data.each do |data_item, stats|
+          stats.each do |stat_type, value|
+            if stat_type == :shoe
+              shoes[data_item] = value
+            end
+          end
+        end
+      end
+    end
+  end
+    
+  shoes
+  find_shoes = shoes.values.sort.max
+  player_name = shoes.key(find_shoes)
+  
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+      if attribute == :players
+        data.each do |data_item, stats|
+          if data_item == player_name
+            stats.each do |stat_type, value|
+              if stat_type == :rebounds
+                return value
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 end
   
