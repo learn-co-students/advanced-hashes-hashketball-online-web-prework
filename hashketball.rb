@@ -118,99 +118,119 @@ def game_hash
 }
 end
 
-def num_points_scored(player)
+def find_the_player(name)
   game_hash.each do |location, team|
-    team[:players].each do |name, details|
-      if name == player
-        details.each do |stat, number|
-            if stat == :points
-              return number
-            end
-          end
-      end
+    team[:players].each do |player, details|
+      return details if player == name
     end
   end
+end
+
+def find_the_team(team_name)
+  game_hash.each do |location, team|
+    return team if team[:team_name] == team_name
+  end
+end
+
+def num_points_scored(player)
+  player = find_the_player(player)
+  player[:points]
 end
 
 def shoe_size(player)
-  game_hash.each do |location, team|
-    team[:players].each do |name, details|
-      if name == player
-        details.each do |stat, number|
-            if stat == :shoe
-              return number
-            end
-          end
-      end
-    end
-  end
+  player = find_the_player(player)
+  player[:shoe]
 end
 
 def team_colors(team)
-  game_hash.each do |location, team_attributes|
-      if team_attributes[:team_name] == team
-        return team_attributes[:colors]
-      end
-  end
+  team = find_the_team(team)
+  team[:colors]
 end
 
 def team_names
-  teams = []
-
-  game_hash.each do |location, team_attributes|
-      teams << team_attributes[:team_name]
+  game_hash.map do |location, team_attributes|
+    team_attributes[:team_name]
   end
-
-  teams
 end
 
 def player_numbers(team_name)
-  numbers = []
-
-  game_hash.each do |location, team_details|
-    if team_details[:team_name] == team_name
-      team_details[:players].each do |player, attributes|
-        numbers << attributes[:number]
-      end
-    end
+  team = find_the_team(team_name)
+  team[:players].map do |player, attributes|
+    attributes[:number]
   end
-
-  numbers
 end
 
 def player_stats(given_player)
-  game_hash.each do |location, team_details|
-    team_details[:players].each do |name, player_details|
-      if name == given_player
-        return player_details
-      end
-    end
-  end
+  find_the_player(given_player)
 end
 
 def big_shoe_rebounds
-
-  biggest_shoe_size = 0
-  biggest_shoe_player = ""
+  shoe_sizes = {}
 
   game_hash.each do |location, team_details|
-    team_details[:players].each do |name, player_details|
-      if player_details[:shoe] >  biggest_shoe_size
-        biggest_shoe_size = player_details[:shoe]
-        biggest_shoe_player = name
-      end
+    team_details[:players].each do |player, player_details|
+      shoe_sizes[player] = player_details[:shoe]
     end
   end
 
-  game_hash.each do |location, team|
-    team[:players].each do |name, details|
-      if name == biggest_shoe_player
-        details.each do |stat, number|
-            if stat == :rebounds
-              return number
-            end
-        end
+  biggest_shoe_size_stats = find_the_player(shoe_sizes.key(shoe_sizes.values.max))
+  biggest_shoe_size_stats[:rebounds]
+end
+
+def most_points_scored
+    points_scored = {}
+
+    game_hash.each do |location, team_details|
+      team_details[:players].each do |player, player_details|
+        points_scored[player] = player_details[:points]
       end
     end
+
+    points_scored.key(points_scored.values.max)
+end
+
+def winning_team
+  final_score = {}
+  game_hash.each do |location, team_details|
+    team_score = []
+
+    team_details[:players].each do |player, player_details|
+      team_score << player_details[:points]
+    end
+    final_score[team_details[:team_name]] = team_score.sum
   end
+  final_score.key(final_score.values.max)
+end
+
+def player_with_longest_name
+  players = []
+
+  game_hash.each do |location, team_details|
+    team_details[:players].each do |player, player_details|
+      players << player
+    end
+  end
+
+  players = players.sort do |a, b|
+    a.size <=> b.size
+  end
+
+  players[-1]
+end
+
+def long_name_steals_a_ton?
+  steals = {}
+
+  game_hash.each do |location, team_details|
+    team_details[:players].each do |player, player_details|
+      steals[player] = player_details[:steals]
+    end
+  end
+
+  if steals.key(steals.values.max) == player_with_longest_name
+    return true
+  else
+    return false
+  end
+
 end
