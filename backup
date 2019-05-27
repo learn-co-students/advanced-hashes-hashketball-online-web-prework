@@ -1,0 +1,13 @@
+game_hash.each do |team1, info1|
+    if team1 = :away 
+      info1.each do |info_type1, stats1| 
+        if info_type1 == :players
+          stats1.each do |name1, values1|
+            bleeeeeep = num_points_scored(name1)
+            away += bleeeeeep
+          end 
+        end
+      end
+    else break
+    end
+  end
