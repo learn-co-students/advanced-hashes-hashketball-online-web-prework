@@ -70,7 +70,7 @@ def game_hash
             blocks: 7,
             slam_dunks: 2
         },
-        "Bismak Biyombo" => {
+        "Bismack Biyombo" => {
             number: 0,
             shoe: 16,
             points: 12,
@@ -127,10 +127,10 @@ def num_points_scored(name)
 end
 
 
-def shoe_size(name)
-  game_hash.each do |team, players|
-    players[:players].each do |name, info|
-      if name == name
+def shoe_size(player_name)
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |name, info|
+      if name == player_name
         return info[:shoe]
       end
     end
@@ -165,18 +165,10 @@ def player_numbers(name)
   array
 end
 
- def player_stats(player_name)
-  player_stats = {}
-  game_hash.each do |team, team_data|
-    team_data[:players].each do |stats|
-
-      if stats[:name] == player_name
-        stats.delete(:name)
-        player_stats = stats
-      end
-    end
-  end
-  player_stats
+ def player_stats(name)
+   game_hash.each do |location, team_data|
+     return team_data[:players][name] if team_data[:players][name]
+   end
 end
 
 
