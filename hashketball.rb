@@ -17,6 +17,7 @@ def game_hash
             slam_dunks: 1
           },
           "Reggie Evans" => {
+            
             number: 30,
             shoe: 14,
             points: 12,
@@ -94,7 +95,7 @@ def game_hash
           },
           "Ben Gordon" => {
             number: 8,
-            shoe: 15, #game_hash[:away][:players]["Ben Gordon"][:shoe]
+            shoe: 15, 
             points: 33,
             rebounds: 3,
             assists: 2,
@@ -117,16 +118,97 @@ def game_hash
     }
   end
 
+def num_points_scored(player)
+  game_hash.each do |location, team|
+    team.each do |attribute, data|
+    if data.include?(player)
+      return team[:players][player][:points]
+    end
+  end
+end  
+end
 
- def num_points_scored(player)
-    game_hash.each do |location, team|
+
+
+
+def shoe_size(player)
+  game_hash.each do |location, team|
         team.each do |attribute, data|
             if data.include?(player)
-            return game_hash[location][attribute][player][:points]
+            return game_hash[location][attribute][player][:shoe]
             end
         end 
     end  
 end 
+  
+  def team_colors (t_name)
+  game_hash.each do |location, team|
+        team.each do |attribute, data|
+            if data==t_name
+            return game_hash[location][:colors]
+            end
+        end 
+    end  
+end 
+
+def team_names
+  game_hash.map do |location, team|
+        game_hash[location][:team_name]
+       end
+     end
+   
+   
+def player_numbers (t_name)
+  game_hash.each do |location, team|
+        team.each do |attribute, data|
+            if data==t_name
+              team[:players].map do |name,stats|
+                stats[:number]
+                
+        
+            end
+        end 
+    end  
+end
+end
+    
+def player_stats(player)
+    game_hash.each do |location, team|
+        team.each do |attribute, data|
+            if data.include?(player)
+            return game_hash[location][attribute][player]
+            end
+        end 
+    end  
+end
+  
+  
+def big_shoe_rebounds
+    name_and_shoesize = {}
+  game_hash.each do |location, team|
+        team.each do |attribute, data|
+           team[:players].each do |name, stats|
+               name_and_shoesize[name]=stats[:shoe]
+            end
+        end 
+    end  
+    biggest_shoe = name_and_shoesize.key(name_and_shoesize.values.max)
+    game_hash.each do |location, team|
+        team.each do |attribute, data|
+            if data.include?(biggest_shoe)
+            return game_hash[location][attribute][biggest_shoe][:rebounds]
+            end
+        end 
+    end  
+end 
+ 
+
+
+ 
+
+ 
+ 
+  
 
 
 
