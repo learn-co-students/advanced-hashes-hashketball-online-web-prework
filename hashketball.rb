@@ -1,10 +1,14 @@
 # Write your code here!
-game_hash = {
+require "pry"
+
+def game_hash 
+  {
   :home => {
     :team_name => "Brooklyn Nets",
     :colors => ["Black", "White"],
     :players => [
       {
+        name: "Alan Anderson",
         number: 0,
         shoe: 16,
         points: 22,
@@ -15,6 +19,7 @@ game_hash = {
         slam_dunks: 1
       },
       {
+        name: "Reggie Evans",
         number: 30,
         shoe: 14,
         points: 12,
@@ -25,6 +30,7 @@ game_hash = {
         slam_dunks: 7
       },
       {
+        name: "Brook Lopez", 
         number: 11, 
         shoe: 17, 
         points: 17, 
@@ -35,6 +41,7 @@ game_hash = {
         slam_dunks: 15
       },
       {
+        name: "Mason Plumlee", 
         number: 1, 
         shoe: 19, 
         points: 26, 
@@ -45,6 +52,7 @@ game_hash = {
         slam_dunks: 5
       },
       {
+        name: "Jason Terry", 
         number: 31, 
         shoe: 15, 
         points: 19, 
@@ -61,6 +69,7 @@ game_hash = {
     :colors => ["Turquoise", "Purple"],
     :players => [
       {
+        name: "Jeff Adrien",
         number: 4,
         shoe: 18,
         points: 10,
@@ -71,6 +80,7 @@ game_hash = {
         slam_dunks: 2
       },
       {
+        name: "Bismack Biyombo",
         number: 0,
         shoe: 16,
         points: 12,
@@ -81,6 +91,7 @@ game_hash = {
         slam_dunks: 10
       },
       {
+        name: "DeSagna Diop", 
         number: 2, 
         shoe: 14, 
         points: 24, 
@@ -91,6 +102,7 @@ game_hash = {
         slam_dunks: 5
       },
       {
+        name: "Ben Gordon", 
         number: 8, 
         shoe: 15, 
         points: 33, 
@@ -101,6 +113,7 @@ game_hash = {
         slam_dunks: 0
       },
       {
+        name: "Kemba Walker",
         number: 33, 
         shoe: 15, 
         points: 6, 
@@ -113,12 +126,45 @@ game_hash = {
       ]
   }
 }
+end
 
-
-
-
-
-
-
-
-
+def num_points_scored(player_name)
+  
+  game_hash.each do |team, team_hash|
+    
+    team_hash.each do |team_characteristic, characteristic_value|
+      
+      if team_characteristic == :players 
+        
+        characteristic_value.each do |player_hash|
+          
+          player_hash.each do |player_characteristic, player_characteristic_value|
+            
+            player_points = player_hash[:points]
+            
+            if player_characteristic == :name
+            
+              if player_characteristic_value == player_name
+                
+                return player_points
+                
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
