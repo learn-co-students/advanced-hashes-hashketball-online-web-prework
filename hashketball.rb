@@ -7,7 +7,7 @@ def game_hash
     :team_name => "Brooklyn Nets",
     :colors => ["Black", "White"],
     :players => [
-      "Alan Anderson" => {
+      {
         number: 0,
         shoe: 16,
         points: 22,
@@ -17,7 +17,7 @@ def game_hash
         blocks: 1,
         slam_dunks: 1
       },
-      "Reggie Evans" => {
+      {
         name: "Reggie Evans",
         number: 30,
         shoe: 14,
@@ -28,7 +28,7 @@ def game_hash
         blocks: 12, 
         slam_dunks: 7
       },
-      "Brook Lopez" => {
+      {
         name: "Brook Lopez", 
         number: 11, 
         shoe: 17, 
@@ -39,7 +39,7 @@ def game_hash
         blocks: 1, 
         slam_dunks: 15
       },
-      "Mason Plumlee" => {
+      {
         name: "Mason Plumlee", 
         number: 1, 
         shoe: 19, 
@@ -50,7 +50,7 @@ def game_hash
         blocks: 8, 
         slam_dunks: 5
       },
-      "Jason Terry" => {
+      {
         number: 31, 
         shoe: 15, 
         points: 19, 
