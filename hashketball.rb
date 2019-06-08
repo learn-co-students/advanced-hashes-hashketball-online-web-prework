@@ -7,8 +7,7 @@ def game_hash
     :team_name => "Brooklyn Nets",
     :colors => ["Black", "White"],
     :players => [
-      {
-        name: "Alan Anderson",
+      "Alan Anderson" => {
         number: 0,
         shoe: 16,
         points: 22,
@@ -18,7 +17,7 @@ def game_hash
         blocks: 1,
         slam_dunks: 1
       },
-      {
+      "Reggie Evans" => {
         name: "Reggie Evans",
         number: 30,
         shoe: 14,
@@ -29,7 +28,7 @@ def game_hash
         blocks: 12, 
         slam_dunks: 7
       },
-      {
+      "Brook Lopez" => {
         name: "Brook Lopez", 
         number: 11, 
         shoe: 17, 
@@ -40,7 +39,7 @@ def game_hash
         blocks: 1, 
         slam_dunks: 15
       },
-      {
+      "Mason Plumlee" => {
         name: "Mason Plumlee", 
         number: 1, 
         shoe: 19, 
@@ -51,8 +50,7 @@ def game_hash
         blocks: 8, 
         slam_dunks: 5
       },
-      {
-        name: "Jason Terry", 
+      "Jason Terry" => {
         number: 31, 
         shoe: 15, 
         points: 19, 
@@ -169,14 +167,60 @@ end
   
   
 def team_colors(team_name)
-  game_hash.each do |team, team_attributes|
-    if team == team_name
+  game_hash.each do |team, team_attribute|
+    if team_attribute[:team_name] == team_name
       return game_hash[team][:colors]
     end
   end
 end
   
   
+def team_names
+  team_names_array = []
+  game_hash.each do |team_location, team_hash|
+    team_hash.each do |team_attribute, team_attribute_value|
+      if team_attribute == :team_name 
+        team_names_array << team_attribute_value
+      end
+    end
+  end
+  team_names_array
+end
+  
+  
+def player_numbers(team_name)
+  player_number_array = []
+  game_hash.each do |team_location, team_hash|
+    team_hash.each do |team_attribute, team_attribute_value|
+      if team_attribute == :players && team_hash[:team_name] == team_name
+        team_attribute_value.each do |player_hash|
+          player_hash.each do |player_attribute, player_attribute_value|
+            if player_attribute == :number
+              player_number_array << player_attribute_value
+            end
+          end
+        end
+      end
+    end
+  end
+  player_number_array
+end
+
+
+def player_stats(player_name)
+  game_hash.each do |team_location, team_hash|
+    team_hash.each do |team_attribute, team_attribute_value|
+      if team_attribute == :players
+        team_attribute_value.each do |player_hash|
+          if player_hash[:name] == player_name
+            return player_hash
+          end
+        end
+      end
+    end
+  end
+end
+
   
   
   
