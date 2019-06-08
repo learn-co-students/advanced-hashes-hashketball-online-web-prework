@@ -192,4 +192,48 @@ def player_stats(players_name)
   new_hash
 end
   
+def big_shoe_rebounds
+  biggest_size = 0 
+  rebound = 0 
+  
+  game_hash.each do |team, data|
+      data[:players].each do |player|
+          if player[:shoe] > biggest_size
+              biggest_size = player[:shoe]
+              rebound = player[:rebounds]
+          end
+      end
+  end
+  rebound
+end
+
+# def most_points_scored
+#   highest_scorer = []
+  
+#   game_hash.each do |team, data|
+#     data[:players].each do |player|
+#       if player[:points] > highest_scorer
+#         highest_scorer = player[:player_name]
+#       end
+#     end
+#   end
+#   most_points
+# end
+
+# def winning_team
+#   away_total = 0 
+#   home_total = 0 
+  
+# game_hash[:away][players].each do |name, stats|
+#   away_total += stats[:points]
+# game_hash[:home][players].each do |name, stats|
+#   away_total += stats[:points]
+#   if away_total > home_total
+#     game_hash[:away][:team_name]
+#   else 
+#     game_hash[:home][:team_name]
+#   end
+# end
+
+# end
 
