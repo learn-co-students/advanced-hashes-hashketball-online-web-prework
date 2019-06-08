@@ -210,20 +210,57 @@ end
 
 
 def player_stats(player_name)
+  player_data = {}
   game_hash.each do |team_location, team_hash|
     team_hash.each do |team_attribute, team_attribute_value|
       if team_attribute == :players
         team_attribute_value.each do |player_hash|
           if player_hash[:name] == player_name
-            return player_hash
+            player_data =  player_hash
           end
         end
       end
     end
   end
+  player_data.delete_if {|attribute, attribute_value| attribute == :name}
+  return player_data
 end
 
   
-  
-  
-  
+def big_shoe_rebounds
+  biggest_shoe = 0 
+  player_rebounds = 0 
+  game_hash.each do |team_location, team_hash|
+    team_hash.each do |team_attribute, team_attribute_value|
+      if team_attribute == :players
+        team_attribute_value.each do |player_hash|
+          player_hash.each do |player_attribute, player_attribute_value|
+            if player_attribute == :shoe 
+              if player_attribute_value > biggest_shoe
+                biggest_shoe = player_attribute_value
+                player_rebounds = player_hash[:rebounds]
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  player_rebounds
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
