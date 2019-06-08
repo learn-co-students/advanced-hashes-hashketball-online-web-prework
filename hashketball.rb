@@ -8,6 +8,7 @@ def game_hash
     :colors => ["Black", "White"],
     :players => [
       {
+        name: "Alan Anderson",
         number: 0,
         shoe: 16,
         points: 22,
@@ -51,6 +52,7 @@ def game_hash
         slam_dunks: 5
       },
       {
+        name: "Jason Terry", 
         number: 31, 
         shoe: 15, 
         points: 19, 
