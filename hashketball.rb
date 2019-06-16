@@ -172,10 +172,29 @@ def player_numbers(team_name)
   jerseys = []
   game_hash.each do |location, team_data|
     if team_data[:team_name] == team_name
-      team_data[:players].each do |stats, value|
+      team_data[:players].each do |stats|
         jerseys << stats[:number]
       end
     end
   end
   jerseys
+end
+
+def player_stats(name)
+  stats = {}
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |stat|
+      if stat[:player_name] == name
+        stats[:number] = stat[:number] 
+        stats[:shoe] = stat[:shoe]
+        stats[:points] = stat[:points]
+        stats[:rebounds] = stat[:rebounds]
+        stats[:assists] = stat[:assists]
+        stats[:steals] = stat[:steals]
+        stats[:blocks] = stat[:blocks]
+        stats[:slam_dunks] = stat[:slam_dunks]
+      end
+    end
+  end
+  stats
 end
