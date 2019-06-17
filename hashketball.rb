@@ -198,3 +198,86 @@ def player_stats(name)
   end
   stats
 end
+
+def big_shoe_rebounds
+  shoe_size = 0
+  rebound = 0
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |stat|
+      if stat[:shoe] > shoe_size
+        shoe_size = stat[:shoe]
+        rebound = stat[:rebounds]
+      end
+    end
+  end
+  rebound
+end
+
+def most_points_scored
+  most_points = 0
+  vip = ""
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |stat|
+      # if stat[:points] is the biggest, return stat[:player_name]
+      if stat[:points] > most_points
+        most_points = stat[:points]
+        vip = stat[:player_name]
+      end
+    end
+  end
+  vip
+end
+
+def winning_team
+  home = 0
+  away = 0
+  # reduce away points and home points, compare, return greatest
+  game_hash.each do |location, team_data|
+    if :home
+      team_data[:players].each do |stat|
+        home += stat[:points]
+      end
+    elsif :away
+      team_data[:players].each do |stat|
+        away += stat[:points]
+      end
+    end
+    
+    if home > away
+      return game_hash[:home][:team_name]
+    elsif home < away
+      return game_hash[:away][:team_name]
+    else
+      return "It's a tie!"
+    end
+  end
+end
+
+def player_with_longest_name
+  name_length = 0
+  longest_name = ""
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |stat|
+      if stat[:player_name].length > name_length
+        name_length = stat[:player_name].length
+        longest_name = stat[:player_name]
+      end
+    end
+  end
+  longest_name
+end
+
+def long_name_steals_a_ton?
+  # player_with_longest_name have the most steals (variation of most_points_scored)?
+  most_steals = 0
+  thief = ""
+    game_hash.each do |location, team_data|
+      team_data[:players].each do |stat|
+        if stat[:steals] > most_steals
+          most_steals = stat[:steals]
+          thief = stat[:player_name]
+        end
+      end
+    end 
+  thief == player_with_longest_name
+end
