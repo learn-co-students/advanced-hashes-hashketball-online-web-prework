@@ -27,7 +27,7 @@ describe 'hashketball' do
 
     it 'knows the number of points scored by each player' do
       expect(num_points_scored("Jeff Adrien")).to eq(10)
-      expect(num_points_scored("Bismack Biyombo")).to eq(12)
+      expect(num_points_scored("Bismak Biyombo")).to eq(12)
       expect(num_points_scored("DeSagna Diop")).to eq(24)
       expect(num_points_scored("Ben Gordon")).to eq(33)
       expect(num_points_scored("Brendan Haywood")).to eq(6)
@@ -44,7 +44,7 @@ describe 'hashketball' do
 
     it 'knows the shoe size of each player' do
       expect(shoe_size("Jeff Adrien")).to eq(18)
-      expect(shoe_size("Bismack Biyombo")).to eq(16)
+      expect(shoe_size("Bismak Biyombo")).to eq(16)
       expect(shoe_size("DeSagna Diop")).to eq(14)
       expect(shoe_size("Ben Gordon")).to eq(15)
       expect(shoe_size("Brendan Haywood")).to eq(15)
@@ -223,7 +223,7 @@ describe 'hashketball' do
 
     it 'returns all stats for a given player' do
       expect(player_stats("Jeff Adrien")).to eq(jeff_stats)
-      expect(player_stats("Bismack Biyombo")).to eq(bismak_stats)
+      expect(player_stats("Bismak Biyombo")).to eq(bismak_stats)
       expect(player_stats("DeSagna Diop")).to eq(desagna_stats)
       expect(player_stats("Ben Gordon")).to eq(ben_stats)
       expect(player_stats("Brendan Haywood")).to eq(brendan_stats)
@@ -250,40 +250,40 @@ end
 
 # describe 'bonus' do
 
-#   describe '#most_points_scored' do
+  describe '#most_points_scored' do
 
-#     it 'returns Ben Gordon' do
-#       expect(most_points_scored).to eq("Ben Gordon")
-#     end
+    it 'returns Ben Gordon' do
+      expect(most_points_scored).to eq("Ben Gordon")
+    end
 
-#   end
+  end
 
-#   describe '#winning_team' do
+  describe '#winning_team' do
 
-#     it 'returns the Brooklyn Nets' do
-#       expect(winning_team).to eq("Brooklyn Nets")
-#     end
+    it 'returns the Brooklyn Nets' do
+      expect(winning_team).to eq("Brooklyn Nets")
+    end
 
-#   end
+  end
 
-#   describe '#player_with_longest_name' do
+  describe '#player_with_longest_name' do
 
-#     it 'returns Brendan Haywood' do
-#       expect(player_with_longest_name).to eq("Brendan Haywood")
-#     end
+    it 'returns Brendan Haywood' do
+      expect(player_with_longest_name).to eq("Brendan Haywood")
+    end
 
-#   end
-
-# end
-
-# describe 'super bonus' do
-
-#   describe '#long_name_steals_a_ton?' do
-
-#     it 'returns true' do
-#       expect(long_name_steals_a_ton?).to eq(true)
-#     end
-
-#   end
+  end
 
 # end
+
+describe 'super bonus' do
+
+  describe '#long_name_steals_a_ton?' do
+
+    it 'returns true' do
+      expect(long_name_steals_a_ton?).to eq(true)
+    end
+
+  end
+
+end
