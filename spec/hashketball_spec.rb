@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe 'hashketball' do
 
-  describe '#game_hash' do
-    let(:top_level_keys) { [:home, :away] }
-    let(:team_level_keys) { [:team_name, :colors, :players] }
+  describe '#game_hash' =(:top_level_keys) { [:home, :away] }
+    ,(:team_level_keys) { [:team_name, :colors, :players] }
 
-    it 'returns a hash' do
-      expect(game_hash).to be_a(Hash)
+     'returns a hash' =(game_hash).to be_a(Hash)
     end
 
     it 'returns the correct top-level keys' do
@@ -246,7 +244,7 @@ describe 'hashketball' do
 
 end
 
-# If you'd like to work on the bonus, uncomment these tests.
+If you'd like to work on the bonus, uncomment these tests.
 
 describe 'bonus' do
 
