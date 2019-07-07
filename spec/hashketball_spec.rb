@@ -248,9 +248,9 @@ end
 
 # If you'd like to work on the bonus, uncomment these tests.
 
-describe 'bonus' do
+#describe 'bonus' do
 
-  describe '#most_points_scored' do
+ # describe '#most_points_scored' do
 
     it 'returns Ben Gordon' do
       expect(most_points_scored).to eq("Ben Gordon")
@@ -258,17 +258,17 @@ describe 'bonus' do
 
   end
 
-  describe '#winning_team' do
+  #describe '#winning_team' do
 
-    it 'returns the Brooklyn Nets' do
+    #it 'returns the Brooklyn Nets' do
       expect(winning_team).to eq("Brooklyn Nets")
     end
 
   end
 
-  describe '#player_with_longest_name' do
+ # describe '#player_with_longest_name' do
 
-    it 'returns Bismack Biyombo' do
+    #it 'returns Bismack Biyombo' do
       expect(player_with_longest_name).to eq("Bismack Biyombo")
     end
 
@@ -276,11 +276,11 @@ describe 'bonus' do
 
 end
 
-describe 'super bonus' do
+#describe 'super bonus' do
 
-  describe '#long_name_steals_a_ton?' do
+ # describe '#long_name_steals_a_ton?' do
 
-    it 'returns true' do
+   # it 'returns true' do
       expect(long_name_steals_a_ton?).to eq(true)
     end
 
