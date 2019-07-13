@@ -198,3 +198,15 @@ def player_stats (player)
   end
   player_stats
 end
+
+def big_shoe_rebounds
+  big_shoe = 0
+  game_hash.each do |side,info|
+    info.each do |attribute, data|
+      binding.pry
+      if data == numbers
+        info[:players].each {|player| ary.push(player[:number])}
+      end
+    end
+  end
+end
