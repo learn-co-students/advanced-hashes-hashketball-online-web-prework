@@ -201,12 +201,28 @@ end
 
 def big_shoe_rebounds
   big_shoe = 0
+  player_rebounds = 0
   game_hash.each do |side,info|
-    info.each do |attribute, data|
-      binding.pry
-      if data == numbers
-        info[:players].each {|player| ary.push(player[:number])}
+    info[:players].each do |player|
+      if player[:shoe] >= big_shoe
+        big_shoe = player[:shoe]
+        player_rebounds = player[:rebounds]
       end
     end
   end
+  player_rebounds
+end
+
+def most_points_scored
+  most_points = 0
+  player_point = ""
+  game_hash.each do |side,info|
+    info[:players].each do |player|
+      if player[:points] >= most_points
+        most_points = player[:points]
+        player_point = player[:play_name]
+      end
+    end
+  end
+  player_point
 end
