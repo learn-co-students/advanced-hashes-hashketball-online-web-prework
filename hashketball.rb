@@ -223,7 +223,6 @@ def big_shoe_rebounds
         big_shoes = big_shoes
       end
     end
-    
   end
   player_stats(player_with_big_shoes)[:rebounds]
 end
