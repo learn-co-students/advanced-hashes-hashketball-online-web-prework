@@ -129,20 +129,20 @@ end
 
 def player_stats(athlete)
   game_hash
-  hogash = game_hash[:home][:players]
-  awgash = game_hash[:away][:players]
-  ho_players = []
-  hogash.length.times { |index|
-    ho_players.push(hogash[index][:name]) }
-  aw_players = []
-  awgash.length.times { |index|
-    aw_players.push(awgash[index][:name]) }
-  if ho_players.include?(athlete)
-    position = ho_players.find_index(athlete)
-    statistics = hogash[position]
-  elsif aw_players.include?(athlete)
-    position = aw_players.find_index(athlete)
-    statistics = awgash[position]
+  hgash = game_hash[:home][:players]
+  agash = game_hash[:away][:players]
+  home_players = []
+  hgash.length.times { |index|
+    home_players.push(hgash[index][:name]) }
+  away_players = []
+  agash.length.times { |index|
+    away_players.push(agash[index][:name]) }
+  if home_players.include?(athlete)
+    position = home_players.find_index(athlete)
+    statistics = hgash[position]
+  elsif away_players.include?(athlete)
+    position = away_players.find_index(athlete)
+    statistics = agash[position]
   else
     "SLAM"
   end
@@ -264,3 +264,4 @@ def long_name_steals_a_ton?
   la_Comodora = player_with_longest_name
   la_Comodora == la_Capitan
 end
+
