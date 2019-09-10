@@ -226,3 +226,72 @@ def big_shoe_rebounds
     end
   rebounds
 end
+
+
+# BONUS 1: which player get the most POINT?
+def most_points_scored
+  points_scored = 0 
+  player_name = 0 
+  game_hash.each do |place,team|
+    team[:players].each do |stats|
+      if stats[:points] > points_scored
+        points_scored = stats[:points]
+        player_name = stats[:name]
+        # binding.pry
+      end
+    end
+  end
+  return player_name
+end
+
+
+
+
+#BONUS 2: Which team has the highest score? should returns team name
+def winning_team
+  away_team_score = 0 
+  home_team_score = 0 
+  
+  game_hash.each do |place,team| 
+    
+    if place == :home
+      team[:players].each do |home_stats|
+        if home_stats[:points] > home_team_score
+          home_team_score += home_stats[:points]
+        end
+      end
+    end
+  
+    if place == :away 
+      team[:players].each do |away_stats|
+        if away_stats[:points] > away_team_score
+          away_team_score += away_stats[:points]
+        end
+      end
+    end
+    # binding.pry
+    
+      if home_team_score > away_team_score
+          return game_hash[:home][:team_name]
+        else
+          return game_hash[:away][:team_name]
+      end
+  end
+end
+
+
+def player_with_longest_name
+  player_name_length = 0 
+  
+  game_hash.each do |place, team|
+    team[:players].each do |player_name|
+      if team[:players][:name].length > player_name_length
+        binding.pry
+        team[:players][:name]
+      end
+    end
+  end
+end
+
+
+    
