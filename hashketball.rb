@@ -199,5 +199,5 @@ def big_shoe_rebounds
         end # stops player loop
     end # stops player names
   end # stops keys values of team
-  rebounds #return rebounds from the biggest shoe
+  rebounds #return rebounds from the biggest lshoe
 end
