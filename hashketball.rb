@@ -3,20 +3,20 @@ def game_hash # defined method
 new_hash = {# created new hash
 
   home = { # within new hash created key called home
-      :team_name =>"Brooklyn Nets", # key within hash with team name
-      color:["Black, White"], # key with array of string
-      :player_name[ # key with array
-  :Alan_Anderson => { # key with hash
-        number:"0", # keys and value  within hash
-        shoe:"16", # keys and value  within hash
-        points:"22", # keys and value  within hash
-        rebounds:"12", # keys and value  within hash
-        assists:"12", # keys and value  within hash
-        steals:"3", # keys and value  within hash
-        blocks:"3", # keys and value  within hash
-        slam_dunks:"1", # keys and value  within hash
-      }
-  Reggie_Evans: => {
+      "team_name" => "Brooklyn Nets", # key within hash with team name
+      "color" => ["Black" "White"], # key with array of string
+      "players" => [ # key with array
+        "Alan Anderson" => { # key with hash
+          number: 0, # keys and value  within hash
+          shoe: 16, # keys and value  within hash
+          points: 22, # keys and value  within hash
+          rebounds: 12, # keys and value  within hash
+          assists: 12, # keys and value  within hash
+          steals: 3 , # keys and value  within hash
+          blocks: 3, # keys and value  within hash
+          slam_dunks: 1, # keys and value  within hash
+        }
+        "Reggie Evans" => {
         number:"30",
         shoe:"14",
         points:"12",
