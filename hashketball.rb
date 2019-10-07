@@ -42,7 +42,6 @@ new_hash = {# created new hash
         points: 26,
         rebounds: 11,
         assists: 6,
-        steals: 3,
         blocks: 8,
         slam_dunks: 5,
         steals: 3,
