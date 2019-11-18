@@ -118,6 +118,7 @@ def game_hash
 }
 end
 
+
 def num_points_scored(players_name)
 
   game_hash.each do |place, team|
@@ -134,6 +135,7 @@ def num_points_scored(players_name)
   end
 end
 
+
 def shoe_size(players_name)
   game_hash.each do |place, team|
     team.each do |attribute, data|
@@ -149,6 +151,7 @@ def shoe_size(players_name)
   end
 end
 
+
 def team_colors(team_name)
   game_hash.each do |place, team|
     if team[:team_name] == team_name
@@ -156,6 +159,7 @@ def team_colors(team_name)
     end
   end
 end
+
 
 def team_names
   game_hash.map do |place, team|
@@ -170,6 +174,7 @@ end
 #  end
 #  new_array
 #end
+
 
 def player_numbers(team_name)
   numbers = []
@@ -222,6 +227,63 @@ def big_shoe_rebounds
 end
 
 
+def iterate_through_players_for(name, statistic)
+  game_hash.each do |_team, game_data|
+    game_data[:players].each do |player|
+      return player[statistic] if player[:player_name] == name
+    end
+  end
+end
+
+
+def player_with_most_of(statistic)
+  player_name = nil
+  amount_of_stat = 0
+
+  game_hash.each do |_team, game_data|
+    game_data[:players].each do |player|
+      if player[statistic].is_a? String
+        if player[statistic].length > amount_of_stat
+          amount_of_stat = player[statistic].length
+          player_name = player[:player_name]
+        end
+      elsif player[statistic] > amount_of_stat
+        amount_of_stat = player[statistic]
+        player_name = player[:player_name]
+      end
+    end
+  end
+
+  player_name
+end
+
+
 def most_points_scored
-  
+  player_with_most_of(:points)
+end
+
+
+def winning_team
+  # Set up a hash to keep track of the points scored by each team. This way, we
+  # can iterate through each player, get their points scored, and increase the
+  # count in the hash.
+
+  scores = { 'Brooklyn Nets' => 0, 'Charlotte Hornets' => 0 }
+
+  game_hash.each do |_team, game_data|
+    game_data[:players].each do |player|
+      scores[game_data[:team_name]] += iterate_through_players_for(player[:player_name], :points)
+    end
+  end
+  scores.max_by { |_k, v| v }.first
+end
+
+
+def player_with_longest_name
+  player_with_most_of(:player_name)
+end
+
+
+def long_name_steals_a_ton?
+  player_with_most_of(:steals) == player_with_most_of(:player_name)
 end
