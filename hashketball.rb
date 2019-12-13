@@ -119,6 +119,7 @@ new_hash = {# created new hash
 }
 end
 
+
 def num_points_scored(player_name) # defined method with argument
   game_hash.each do |team_name, team_value| # iterate through both teams which are keys
       team_value[:players].each do |players| # pick up players key from the orginal hash
@@ -200,3 +201,20 @@ def big_shoe_rebounds
   end # stops keys values of team
   rebounds #return rebounds from the biggest lshoe
 end
+
+def most_points_scored
+  biggest_score = 0 #counter for points key and value
+  highest_name = nil
+  game_hash.each do |team_name, team_value| # iterate through both teams which are keys
+      team_value[:players].each do |players| # pick up players key from the orginal hash
+        players.each do |name, stats| # got the hash of values and key called name and the keys for each player
+          if stats[:points] > biggest_score # if current player score is bigger than var biggest_score
+            biggest_score = stats[:points]#[:players] #store the points to compare later
+            highest_name = name #store the number of points to return at the end
+          end # stops if statment
+        end # stops player loop
+    end # stops player names
+  end # stops keys values of team
+  highest_name#("") #return most points from the biggest lshoe
+end 
+#end
