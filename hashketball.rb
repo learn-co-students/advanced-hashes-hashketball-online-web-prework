@@ -1,4 +1,6 @@
 require 'pp'
+require 'pry'
+
 def game_hash # defined method
 new_hash = {# created new hash
 
@@ -215,6 +217,17 @@ def most_points_scored
         end # stops player loop
     end # stops player names
   end # stops keys values of team
-  highest_name#("") #return most points from the biggest lshoe
+  highest_name#("") #return name most points from the biggest score
 end 
 #end
+
+def winning_team
+  name_winner = nil
+      game_hash.each do|home_team,value|
+        value[:team_name]#|team| 
+        #binding.pry
+            if home_team[:team_name] 
+               name_winner = home_team[:team_name] 
+            end
+         end
+  end 
