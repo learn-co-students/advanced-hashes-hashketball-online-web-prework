@@ -45,4 +45,15 @@ def team_colors(team)
 end
 
 def team_names()
+  teams = []
+  game_hash.each do |home_or_away, team_data|
+    game_hash[home_or_away].each do |team_info_k, team_info_val|
+      if !teams.include?(game_hash[home_or_away][:team_name])
+        teams << game_hash[home_or_away][:team_name]
+      end
+      # binding.pry
+    end
+  end
+  teams
+  # binding.pry
 end
