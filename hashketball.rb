@@ -91,7 +91,16 @@ def big_shoe_rebounds
           size_arr << player[:shoe]
           # binding.pry
         end
-        binding.pry
+        # binding.pry
+      end
+    end
+    team.each do |attribute, data|
+      if attribute == :players
+        data.each do |player|
+          if player[:shoe] == size_arr.max
+            return player[:rebounds]
+          end
+        end
       end
     end
   end
