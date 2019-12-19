@@ -57,3 +57,19 @@ def team_names()
   teams
   # binding.pry
 end
+
+def player_numbers(team_input)
+  player_numbers = []
+  game_hash.each do |home_or_away, team_data|
+    if game_hash[home_or_away][:team_name] == team_input
+      game_hash[home_or_away][:players].each do |team_member|
+        player_numbers << team_member[:number]
+      end
+    end
+  end
+  player_numbers
+end
+
+def player_stats(player_input)
+
+end
