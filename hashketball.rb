@@ -1,10 +1,6 @@
 require "yaml"
 require "pry"
 
-# lib = YAML.load_file('game_hash.yml')
-
-# pp lib
-
 def game_hash
   YAML.load_file('game_hash.yml')
 end
@@ -81,4 +77,24 @@ def player_stats(player_input)
     end
   end
   new_hash
+end
+
+# returns the number of rebounds of the player with the biggest shoe size
+def big_shoe_rebounds
+  new_hash = {}
+  game_hash.each do |place, team|
+    team.each do |attribute, data|
+      big_foot_size = 0
+      big_foot_player = ""
+      if attribute == :players
+        data.each do |player|
+          if player[:shoe] > big_foot_size
+            big_foot_size = player[:shoe]
+            big_foot_player = player[:player_name]
+            binding.pry
+          end
+        end
+      end
+    end
+  end
 end
