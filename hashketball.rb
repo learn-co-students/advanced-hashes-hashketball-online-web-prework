@@ -73,9 +73,12 @@ def player_stats(player_input)
     team.each do |attribute, data|
       if attribute == :players
         data.each do |player|
-          if player[:player]
+          if player[:player_name] == player_input
+            new_hash = player.delete_if {|k,v| k == :player_name}
+          end
         end
       end
     end
   end
+  new_hash
 end
