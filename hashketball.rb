@@ -89,9 +89,7 @@ def big_shoe_rebounds
       if attribute == :players
         data.each do |player|
           size_arr << player[:shoe]
-          # binding.pry
         end
-        # binding.pry
       end
     end
     team.each do |attribute, data|
@@ -132,5 +130,79 @@ def most_points_scored
 end
 
 def winning_team
+  new_hash = {}
+# people.select{|x| x[:job_title] == "developer"}.map{|y| y[:salary].to_i}.reduce(:+)
+  game_hash.each do |place, team|
+    team.each do |attribute, data|
+      if attribute == :players
+        data.each do |player|
+          if !new_hash[team[:team_name]]
+            new_hash[team[:team_name]] = 0
+          end
+          new_hash[team[:team_name]] += player[:points]
+        end
+      end
+    end
+  end
+  final_scores = []
+  winning_score = 0
+  new_hash.each do |k,v|
+    final_scores << v
+  end
+  winning_score = final_scores.max
+  new_hash.each do |k,v|
+    if v == winning_score
+      return k
+    end
+  end
+end
 
+def player_with_longest_name
+  name_len_arr = []
+  longest_name_len = 0
+  game_hash.each do |place, team|
+    team.each do |attribute, data|
+      if attribute == :players
+        data.each do |player|
+          name_len_arr << player[:player_name].size
+        end
+      end
+    end
+  end
+  longest_name_len = name_len_arr.max
+  game_hash.each do |place, team|
+    team.each do |attribute, data|
+      if attribute == :players
+        data.each do |player|
+          return player[:player_name] if player[:player_name].size == longest_name_len
+        end
+      end
+    end
+  end
+end
+
+def long_name_steals_a_ton?
+  name = player_with_longest_name
+  steals_arr = []
+  max_steals = 0
+  high_score_player = ""
+  game_hash.each do |place, team|
+    team.each do |attribute, data|
+      if attribute == :players
+        data.each do |player|
+          steals_arr << player[:steals]
+        end
+      end
+    end
+  end
+  max_steals = steals_arr.max
+  game_hash.each do |place, team|
+    team.each do |attribute, data|
+      if attribute == :players
+        data.each do |player|
+          return true if player[:steals] == max_steals && player[:player_name] == name
+        end
+      end
+    end
+  end
 end
