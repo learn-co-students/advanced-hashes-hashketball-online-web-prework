@@ -126,5 +126,66 @@ def game_hash
   }
 end
 
-def game_hash
+def num_points_scored(player_name)
+  player = get_player(player_name)
+
+  return player[:points]
+end
+
+def shoe_size(player_name)
+  player = get_player(player_name)
+  return player[:shoe]
+end
+
+def player_stats(player_name)
+  return get_player(player_name)
+end
+
+def team_colors(team_name)
+  team = get_team(team_name)
+  return team[:colors]
+end
+
+def team_names
+  return Array[game_hash[:home][:team_name], game_hash[:away][:team_name]]
+end
+
+def player_numbers(team_name)
+  team = get_team(team_name)
+  numbers = []
+  team[:players].each{ |player| numbers.push(player[:number])}
+
+  return numbers
+end
+
+def big_shoe_rebounds
+  player_largest_shoe = get_players.max_by{|player| player[:shoe]}
+  return player_largest_shoe[:rebounds]
+
+end
+
+def get_players
+  return game_hash[:home][:players] + game_hash[:away][:players]
+end
+
+# helpers
+def get_player(player_name)
+  players = get_players
+  $i = 0
+
+  while get_players[$i][:player_name] != player_name do
+    $i +=1
+  end
+
+  return get_players[$i]
+end
+
+# helper
+def get_team(team_name)
+  if game_hash[:home][:team_name] == team_name
+    return game_hash[:home]
+  end
+  if game_hash[:away][:team_name] == team_name
+    return game_hash[:away]
+  end
 end
