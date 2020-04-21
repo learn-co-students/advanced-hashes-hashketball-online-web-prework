@@ -138,7 +138,7 @@ def shoe_size(player_name)
 end
 
 def player_stats(player_name)
-  return get_player(player_name)
+  return get_player(player_name).delete_if { |key,value| key == :player_name }
 end
 
 def team_colors(team_name)
